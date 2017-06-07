@@ -1,0 +1,56 @@
+OnlineFridge.EditAccount, test;md52b697feb66b01b6b2a3b04867fd571d3.EditAccount
+OnlineFridge.EditAccount, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52b697feb66b01b6b2a3b04867fd571d3.EditAccount
+OnlineFridge.EditAccount;md52b697feb66b01b6b2a3b04867fd571d3.EditAccount
+onlinefridge.EditAccount;md52b697feb66b01b6b2a3b04867fd571d3.EditAccount
+OnlineFridge.OnlineFridgeContent, test;md52b697feb66b01b6b2a3b04867fd571d3.OnlineFridgeContent
+OnlineFridge.OnlineFridgeContent, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52b697feb66b01b6b2a3b04867fd571d3.OnlineFridgeContent
+OnlineFridge.OnlineFridgeContent;md52b697feb66b01b6b2a3b04867fd571d3.OnlineFridgeContent
+onlinefridge.OnlineFridgeContent;md52b697feb66b01b6b2a3b04867fd571d3.OnlineFridgeContent
+test.AfterLogin, test;md56996cb2aea8f756b255ad7a6f28adcb8.AfterLogin
+test.AfterLogin, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.AfterLogin
+test.AfterLogin;md56996cb2aea8f756b255ad7a6f28adcb8.AfterLogin
+test.AfterLogin;md56996cb2aea8f756b255ad7a6f28adcb8.AfterLogin
+test.CreateShopList, test;md56996cb2aea8f756b255ad7a6f28adcb8.CreateShopList
+test.CreateShopList, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.CreateShopList
+test.CreateShopList;md56996cb2aea8f756b255ad7a6f28adcb8.CreateShopList
+test.CreateShopList;md56996cb2aea8f756b255ad7a6f28adcb8.CreateShopList
+test.UpdateProduct, test;md56996cb2aea8f756b255ad7a6f28adcb8.UpdateProduct
+test.UpdateProduct, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.UpdateProduct
+test.UpdateProduct;md56996cb2aea8f756b255ad7a6f28adcb8.UpdateProduct
+test.UpdateProduct;md56996cb2aea8f756b255ad7a6f28adcb8.UpdateProduct
+test.AddProduct, test;md56996cb2aea8f756b255ad7a6f28adcb8.AddProduct
+test.AddProduct, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.AddProduct
+test.AddProduct;md56996cb2aea8f756b255ad7a6f28adcb8.AddProduct
+test.AddProduct;md56996cb2aea8f756b255ad7a6f28adcb8.AddProduct
+test.ListViewAdapter, test;md56996cb2aea8f756b255ad7a6f28adcb8.ListViewAdapter
+test.ListViewAdapter, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.ListViewAdapter
+test.ListViewAdapter;md56996cb2aea8f756b255ad7a6f28adcb8.ListViewAdapter
+test.ListViewAdapter;md56996cb2aea8f756b255ad7a6f28adcb8.ListViewAdapter
+test.OnlineMode, test;md56996cb2aea8f756b255ad7a6f28adcb8.OnlineMode
+test.OnlineMode, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.OnlineMode
+test.OnlineMode;md56996cb2aea8f756b255ad7a6f28adcb8.OnlineMode
+test.OnlineMode;md56996cb2aea8f756b255ad7a6f28adcb8.OnlineMode
+test.Register, test;md56996cb2aea8f756b255ad7a6f28adcb8.Register
+test.Register, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.Register
+test.Register;md56996cb2aea8f756b255ad7a6f28adcb8.Register
+test.Register;md56996cb2aea8f756b255ad7a6f28adcb8.Register
+test.FridgeContent, test;md56996cb2aea8f756b255ad7a6f28adcb8.FridgeContent
+test.FridgeContent, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.FridgeContent
+test.FridgeContent;md56996cb2aea8f756b255ad7a6f28adcb8.FridgeContent
+test.FridgeContent;md56996cb2aea8f756b255ad7a6f28adcb8.FridgeContent
+test.OfflineMode, test;md56996cb2aea8f756b255ad7a6f28adcb8.OfflineMode
+test.OfflineMode, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.OfflineMode
+test.OfflineMode;md56996cb2aea8f756b255ad7a6f28adcb8.OfflineMode
+test.OfflineMode;md56996cb2aea8f756b255ad7a6f28adcb8.OfflineMode
+test.MainActivity, test;md56996cb2aea8f756b255ad7a6f28adcb8.MainActivity
+test.MainActivity, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.MainActivity
+test.MainActivity;md56996cb2aea8f756b255ad7a6f28adcb8.MainActivity
+test.MainActivity;md56996cb2aea8f756b255ad7a6f28adcb8.MainActivity
+test.SplashScreen, test;md56996cb2aea8f756b255ad7a6f28adcb8.SplashScreen
+test.SplashScreen, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56996cb2aea8f756b255ad7a6f28adcb8.SplashScreen
+test.SplashScreen;md56996cb2aea8f756b255ad7a6f28adcb8.SplashScreen
+test.SplashScreen;md56996cb2aea8f756b255ad7a6f28adcb8.SplashScreen
+test.SelectDate.DatePickerFragment, test;md5730dfad2d47728ecc26cdcd52d5736fd.DatePickerFragment
+test.SelectDate.DatePickerFragment, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5730dfad2d47728ecc26cdcd52d5736fd.DatePickerFragment
+test.SelectDate.DatePickerFragment;md5730dfad2d47728ecc26cdcd52d5736fd.DatePickerFragment
+test.selectdate.DatePickerFragment;md5730dfad2d47728ecc26cdcd52d5736fd.DatePickerFragment
