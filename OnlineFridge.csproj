@@ -102,6 +102,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListViewAdapterOnline.cs" />
+    <Compile Include="Online\AddProductOnline.cs" />
     <Compile Include="Online\AfterLogin.cs" />
     <Compile Include="CreateShopList.cs" />
     <Compile Include="DataAccess\Model\ProductOnline.cs" />
