@@ -102,17 +102,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AfterLogin.cs" />
+    <Compile Include="Online\AfterLogin.cs" />
     <Compile Include="CreateShopList.cs" />
     <Compile Include="DataAccess\Model\ProductOnline.cs" />
     <Compile Include="DataAccess\Model\User.cs" />
-    <Compile Include="EditAccount.cs" />
+    <Compile Include="Online\EditAccount.cs" />
     <Compile Include="Offline\UpdateProduct.cs" />
     <Compile Include="Offline\AddProduct.cs" />
     <Compile Include="ListViewAdapter.cs" />
-    <Compile Include="OnlineFridgeContent.cs" />
-    <Compile Include="OnlineMode.cs" />
-    <Compile Include="Register.cs" />
+    <Compile Include="Online\OnlineFridgeContent.cs" />
+    <Compile Include="Online\OnlineMode.cs" />
+    <Compile Include="Online\Register.cs" />
     <Compile Include="SelectDate\DatePickerFragment.cs" />
     <Compile Include="Offline\FridgeContent.cs" />
     <Compile Include="Offline\OfflineMode.cs" />
