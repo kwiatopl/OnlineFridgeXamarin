@@ -11,14 +11,17 @@
         android:layout_height="30.5dp"
         android:gravity="center_horizontal"
         android:id="@+id/textLogin"
-        android:layout_marginTop="17.5dp" />
+        android:layout_marginTop="17.5dp"
+        android:textColor="@color/blue" />
     <EditText
         android:hint="Podaj adres email"
+      android:textColorHint="#808080"
         android:editable="true"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username" />
+        android:id="@+id/username"
+        android:textColor="@color/blue" />
     <TextView
         android:text="PASSWORD"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -26,14 +29,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/textPassword"
         android:gravity="center_horizontal"
+        android:textColor="@color/blue"
         android:layout_marginTop="17.5dp"
         android:layout_marginBottom="10.0dp" />
     <EditText
         android:hint="Podaj hasło"
+      android:textColorHint="#808080"
         android:editable="true"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/blue"
         android:id="@+id/password" />
     <Space
         android:layout_width="match_parent"
@@ -43,8 +49,9 @@
         android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/red"
         android:id="@+id/badPass" />
-    <Space
+  <Space
         android:layout_width="match_parent"
         android:layout_height="31.5dp"
         android:id="@+id/space2" />

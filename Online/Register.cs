@@ -23,7 +23,7 @@ namespace test
             //INICJOWANIE WIDOKOW
             EditText email = FindViewById<EditText>(Resource.Id.email);
             EditText pass = FindViewById<EditText>(Resource.Id.pass);
-            //TextView error = FindViewById<TextView>(Resource.Id.error);
+            TextView error = FindViewById<TextView>(Resource.Id.error);
             
             //INICJOWANIE PRZYCISKÓW
             Button buttonRegister = FindViewById<Button>(Resource.Id.buttonRegister);

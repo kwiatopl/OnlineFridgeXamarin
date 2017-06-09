@@ -1,29 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="customtheme_background">?android:attr/colorAccent</color><style name="Theme.Splash" parent="android:Theme">
     <item name="android:windowBackground">@drawable/Splash</item>
     <item name="android:windowNoTitle">true</item>
   </style>
   
-  <style name="CustomTheme" parent="@android:Theme">
+  <style name="CustomTheme" parent="@android:Theme.Material">
     <item name="android:windowBackground">?android:attr/colorBackground</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:statusBarColor">#f2f0e8</item>
     <item name="android:navigationBarColor">#35bfe8</item>
-    <item name="android:colorAccent">#f2f0e8</item>
+    <item name="android:colorAccent">#ffffffff</item>
     <item name="android:colorButtonNormal">#35bfe8</item>
     <item name="android:colorPrimary">?android:attr/colorButtonNormal</item>
     <item name="android:textColorPrimary">?android:attr/colorButtonNormal</item>
     <item name="android:colorBackground">@color/custom_theme_background</item>
   </style>
-  <style name="CustomTheme2" parent="@android:Theme">
-    <item name="android:windowBackground">?android:attr/colorBackground</item>>
+  <style name="CustomTheme2" parent="@android:Theme.Material">
+    <item name="android:windowBackground">?android:attr/colorBackground</item>
     <item name="android:statusBarColor">#f2f0e8</item>
     <item name="android:navigationBarColor">#35bfe8</item>
     <item name="android:colorAccent">#f2f0e8</item>
     <item name="android:colorButtonNormal">#35bfe8</item>
     <item name="android:colorPrimary">?android:attr/colorButtonNormal</item>
-    <item name="android:textColorPrimary">?android:attr/colorButtonNormal</item>
+    <item name="android:textColorPrimary">@color/bg</item>
     <item name="android:colorBackground">@color/custom_theme_background</item>
   </style>
 </resources>

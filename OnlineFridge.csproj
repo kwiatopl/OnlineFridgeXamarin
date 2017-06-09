@@ -108,6 +108,7 @@
     <Compile Include="CreateShopList.cs" />
     <Compile Include="DataAccess\Model\ProductOnline.cs" />
     <Compile Include="DataAccess\Model\User.cs" />
+    <Compile Include="Online\ChangePassword.cs" />
     <Compile Include="Online\EditAccount.cs" />
     <Compile Include="Offline\UpdateProduct.cs" />
     <Compile Include="Offline\AddProduct.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Online\OnlineFridgeContent.cs" />
     <Compile Include="Online\OnlineMode.cs" />
     <Compile Include="Online\Register.cs" />
+    <Compile Include="Online\UpdateProductOnline.cs" />
     <Compile Include="SelectDate\DatePickerFragment.cs" />
     <Compile Include="Offline\FridgeContent.cs" />
     <Compile Include="Offline\OfflineMode.cs" />
@@ -162,6 +164,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\OnlineFridgeContent.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ChangePassword.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

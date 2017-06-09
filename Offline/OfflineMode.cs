@@ -15,7 +15,7 @@ using test.DataAccess.Model;
 
 namespace test
 {
-    [Activity(Label = "Tryb Offline")]
+    [Activity(Label = "Twoja lodówka",Theme="@style/CustomTheme2")]
     public class OfflineMode : Activity
     {
        

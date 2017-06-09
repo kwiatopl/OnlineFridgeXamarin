@@ -14,7 +14,7 @@ using test.DataAccess.Model;
 
 namespace test
 {
-    [Activity(Label = "Tryb Online", Theme = "@style/CustomTheme")]
+    [Activity(Label = "Twoja lodówka", Theme = "@style/CustomTheme")]
     public class AfterLogin : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -48,7 +48,7 @@ namespace test
 
             btnDodawanie.Click += (x, z) =>
             {
-                var activity = new Intent(this, typeof(AddProduct));
+                var activity = new Intent(this, typeof(AddProductOnline));
 
                 activity.PutExtra("SerializedUser", json);
 

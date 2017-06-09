@@ -18,7 +18,7 @@ using test.DataAccess.Model;
 
 namespace test
 {
-    [Activity(Label = "Zawartość Lodówki", NoHistory = true)] 
+    [Activity(Label = "Zawartość Lodówki",Theme="@style/CustomTheme2" ,NoHistory = true)] 
     public class FridgeContent : Activity
     {
         
@@ -63,7 +63,7 @@ namespace test
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             alert.SetTitle("Potwierdź usunięcie");
-            alert.SetMessage("Czy na pewno chcesz usunąć ten produkt z listy?");
+            alert.SetMessage("Czy na pewno chcesz usunąć produkt: " + product.name + " z listy?");
 
             alert.SetPositiveButton("Usuń", (senderAlert, args) =>
             {
@@ -90,7 +90,7 @@ namespace test
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             alert.SetTitle("Potwierdź edycje");
-            alert.SetMessage("Czy na pewno chcesz edytować ten produkt?");
+            alert.SetMessage("Czy na pewno chcesz edytować produkt " + product.name + " ? ");
 
             alert.SetPositiveButton("Edytuj", (senderAlert, args) =>
             {

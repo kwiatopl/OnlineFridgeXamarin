@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
         android:layout_marginLeft="0.0dp"
+        android:textColor="@color/blue"
         android:clickable="false"
         android:layout_marginRight="0.0dp" />
     <Space

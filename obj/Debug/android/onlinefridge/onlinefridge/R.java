@@ -13,8 +13,9 @@ public final class R {
     public static final class color {
         public static final int bg=0x7f040000;
         public static final int blue=0x7f040001;
-        public static final int custom_theme_background=0x7f040002;
-        public static final int customtheme_background=0x7f040003;
+        public static final int custom_theme_background=0x7f040003;
+        public static final int customtheme_background=0x7f040004;
+        public static final int red=0x7f040002;
     }
     public static final class drawable {
         public static final int button=0x7f020000;
@@ -22,13 +23,16 @@ public final class R {
         public static final int splash=0x7f020002;
     }
     public static final class id {
-        public static final int accountDel=0x7f060017;
+        public static final int accountDel=0x7f06001f;
+        public static final int actualPass=0x7f060017;
         public static final int addProduct=0x7f060013;
-        public static final int badPass=0x7f060021;
+        public static final int badPass=0x7f060029;
         public static final int button1=0x7f060011;
-        public static final int button2=0x7f06001c;
-        public static final int buttonLogin=0x7f060022;
-        public static final int buttonRegister=0x7f060023;
+        public static final int button2=0x7f060024;
+        public static final int buttonChangePass=0x7f06001d;
+        public static final int buttonLogin=0x7f06002a;
+        public static final int buttonRegister=0x7f06002b;
+        public static final int confPass=0x7f06001b;
         public static final int date_display=0x7f06000d;
         public static final int date_display1=0x7f06000c;
         public static final int date_select_button=0x7f06000f;
@@ -36,52 +40,57 @@ public final class R {
         public static final int editAccount=0x7f060014;
         public static final int editText1=0x7f060001;
         public static final int editText2=0x7f060003;
-        public static final int email=0x7f060025;
-        public static final int error=0x7f060028;
+        public static final int email=0x7f06002d;
+        public static final int error=0x7f06001c;
         public static final int fridgeContent=0x7f060012;
         public static final int gramy=0x7f060008;
         public static final int kilogramy=0x7f060006;
-        public static final int linearLayout1=0x7f060029;
+        public static final int linearLayout1=0x7f060030;
         public static final int litry=0x7f060009;
         public static final int logout=0x7f060015;
         public static final int mililitry=0x7f06000a;
-        public static final int pass=0x7f060027;
-        public static final int passChange=0x7f060016;
-        public static final int password=0x7f060020;
-        public static final int productListView=0x7f060018;
-        public static final int produkt=0x7f06002a;
+        public static final int newPass=0x7f060019;
+        public static final int pass=0x7f06002f;
+        public static final int passChange=0x7f06001e;
+        public static final int password=0x7f060028;
+        public static final int productListView=0x7f060020;
+        public static final int produkt=0x7f060031;
         public static final int radioGroup1=0x7f060005;
         public static final int space1=0x7f060010;
         public static final int space2=0x7f06000e;
         public static final int sztuki=0x7f06000b;
-        public static final int textEmail=0x7f060024;
-        public static final int textLogin=0x7f06001d;
-        public static final int textPass=0x7f060026;
-        public static final int textPassword=0x7f06001f;
+        public static final int textActualPass=0x7f060016;
+        public static final int textConfPass=0x7f06001a;
+        public static final int textEmail=0x7f06002c;
+        public static final int textLogin=0x7f060025;
+        public static final int textNewPass=0x7f060018;
+        public static final int textPass=0x7f06002e;
+        public static final int textPassword=0x7f060027;
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f060002;
         public static final int textView3=0x7f060004;
-        public static final int textView4=0x7f06002c;
-        public static final int textView5=0x7f06002d;
-        public static final int txtCount=0x7f06001a;
-        public static final int txtExpDate=0x7f06001b;
-        public static final int txtName=0x7f060019;
-        public static final int txtProduct=0x7f06002b;
-        public static final int username=0x7f06001e;
+        public static final int textView4=0x7f060033;
+        public static final int textView5=0x7f060034;
+        public static final int txtCount=0x7f060022;
+        public static final int txtExpDate=0x7f060023;
+        public static final int txtName=0x7f060021;
+        public static final int txtProduct=0x7f060032;
+        public static final int username=0x7f060026;
     }
     public static final class layout {
         public static final int addproduct=0x7f030000;
         public static final int afterlogin=0x7f030001;
-        public static final int createshoplist=0x7f030002;
-        public static final int editaccount=0x7f030003;
-        public static final int fridgecontent=0x7f030004;
-        public static final int listview_row=0x7f030005;
-        public static final int main=0x7f030006;
-        public static final int offlinemode=0x7f030007;
-        public static final int onlinefridgecontent=0x7f030008;
-        public static final int onlinemode=0x7f030009;
-        public static final int register=0x7f03000a;
-        public static final int updateproduct=0x7f03000b;
+        public static final int changepassword=0x7f030002;
+        public static final int createshoplist=0x7f030003;
+        public static final int editaccount=0x7f030004;
+        public static final int fridgecontent=0x7f030005;
+        public static final int listview_row=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int offlinemode=0x7f030008;
+        public static final int onlinefridgecontent=0x7f030009;
+        public static final int onlinemode=0x7f03000a;
+        public static final int register=0x7f03000b;
+        public static final int updateproduct=0x7f03000c;
     }
     public static final class style {
         public static final int CustomTheme=0x7f050001;

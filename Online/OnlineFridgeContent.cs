@@ -104,14 +104,15 @@ namespace OnlineFridge
             alert.SetPositiveButton("Edytuj", (senderAlert, args) =>
             {
                 var itemToUpdate = _productsList.Single(r => r.productId == product.productId);
-                /*
-                TUTAJ EDYTOWANIE PRODUKTU
 
                 var SerializedObject = JsonConvert.SerializeObject(itemToUpdate);
+
                 var activity = new Intent(this, typeof(UpdateProduct));
+
                 activity.PutExtra("ProductToEdit", SerializedObject);
+
                 StartActivity(activity);
-                */
+                
             });
 
             alert.SetNegativeButton("Anuluj", (senderAlert, args) => { });
@@ -149,20 +150,6 @@ namespace OnlineFridge
             }
         }
 
-        
-        public async Task UpdateProduct(ProductOnline product)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
-
-                var json = JsonConvert.SerializeObject(product);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                await client.PostAsync("/api/Product/{" + product.productId +  "}", content);
-            }
-        }
-        
 
     }
 

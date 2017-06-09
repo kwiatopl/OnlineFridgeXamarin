@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Newtonsoft.Json;
 using OnlineFridge;
 using test.DataAccess;
 using test.DataAccess.Model;
@@ -14,7 +17,7 @@ using Thread = System.Threading.Thread;
 namespace test
 { 
     
-[Activity(Label = "Dodawanie Produktu", NoHistory = true)]
+[Activity(Label = "Dodawanie Produktu",Theme = "@style/CustomTheme2", NoHistory = true)]
     public class AddProductOnline : Activity
     {    
         TextView _dateDisplay;
@@ -35,6 +38,9 @@ namespace test
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.AddProduct);
+
+            var json = Intent.GetStringExtra("SerializedUser");
+            var actualUser = JsonConvert.DeserializeObject<User>(json);
 
             Button btnDodaj = FindViewById<Button>(Resource.Id.button1);
             EditText txtNazwa = FindViewById<EditText>(Resource.Id.editText1);
@@ -81,34 +87,28 @@ namespace test
             };
 
             btnDodaj.Click += (x, z) =>
-            { 
-                    if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) && int.Parse(txtIlosc.Text.ToString()) != 0 )
-                    {
-                    Product produkt = new Product();
+            {
+                if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) && int.Parse(txtIlosc.Text.ToString()) != 0)
+                {
+                    ProductOnline produkt = new ProductOnline();
 
                     produkt.name = txtNazwa.Text.ToString().ToUpper();
                     produkt.count = int.Parse(txtIlosc.Text.ToString());
                     produkt.unit = type;
                     produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
-
-                    using (var db = new FridgeDb())
-                    {
-                        db.Insert(produkt);
-                    }
-
-                    // TEST 
+                    produkt.userId = actualUser.userId;
+                    produkt.inShoppingList = false;
+                    
+                    PostProduct(produkt);
 
                     Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
-                        var activity = new Intent(this, typeof(AddProduct));
-                        StartActivity(activity);
-
-                    }
-                    else
-                    {
+                    var activity = new Intent(this, typeof(AddProductOnline));
+                    StartActivity(activity);
+                }
+                else
+                {
                     Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
-                    }    
-
-               
+                }
             };
 
         }
@@ -117,7 +117,7 @@ namespace test
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {
-                _dateDisplay.Text = time.ToShortDateString();
+                _dateDisplay.Text = time.ToString("yyyy-MM-dd");
             });
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }
@@ -126,6 +126,25 @@ namespace test
         {
             base.OnStop();
             Finish();
+        }
+
+        private async void PostProduct(ProductOnline productToPost)
+        {
+            await UpdateProduct(productToPost);
+        }
+
+        public async Task UpdateProduct(ProductOnline product)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+
+                var json = JsonConvert.SerializeObject(product);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                await client.PostAsync("/api/Product", content);
+            }
         }
     }
    

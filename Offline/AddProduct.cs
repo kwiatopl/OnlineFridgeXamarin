@@ -16,7 +16,7 @@ using Thread = System.Threading.Thread;
 namespace test
 { 
     
-[Activity(Label = "Dodawanie Produktu", NoHistory = true)]
+[Activity(Label = "Dodawanie Produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class AddProduct : Activity
     { 
 

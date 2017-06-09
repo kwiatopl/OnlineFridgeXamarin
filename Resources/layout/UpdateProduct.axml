@@ -13,11 +13,13 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/produkt"
             android:layout_width="wrap_content"
+            android:textColor="@color/blue"
             android:layout_height="match_parent" />
         <TextView
             android:text=""
             android:id="@+id/txtProduct"
             android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="@color/blue"
             android:layout_width="113.0dp"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -31,11 +33,13 @@
       android:textAppearance="?android:attr/textAppearanceMedium"
       android:id="@+id/textView4"
       android:layout_width="wrap_content"
+      android:textColor="@color/blue"
       android:layout_height="match_parent" />
     <TextView
       android:text=""
       android:id="@+id/textView5"
       android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/blue"
       android:layout_width="113.0dp"
       android:layout_height="match_parent" />
   </LinearLayout>
@@ -43,6 +47,7 @@
     <TextView
         android:text="Podaj nową ilość:"
         android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2" />
@@ -50,10 +55,12 @@
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:inputType="number"
+      android:textColor="@color/blue"
         android:layout_height="wrap_content" />
     <TextView
         android:text="Wybor jednostki:"
         android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView3" />
@@ -106,11 +113,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+      android:textColor="@color/blue"
         android:id="@+id/date_display1" />
     <TextView
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
+      android:textColor="@color/blue"
         android:layout_height="wrap_content"
         android:id="@+id/date_display" />
     <Button

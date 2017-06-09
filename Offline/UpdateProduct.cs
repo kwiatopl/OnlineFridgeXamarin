@@ -14,7 +14,7 @@ using test.SelectDate;
 
 namespace test
 {
-    [Activity(Label = "Edycja produktu", NoHistory = true)]
+    [Activity(Label = "Edycja produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class UpdateProduct : Activity
     {
         TextView _dateDisplay;

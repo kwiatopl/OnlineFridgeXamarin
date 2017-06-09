@@ -44,9 +44,9 @@ namespace test
 
                         if (userToLog.email == login && userToLog.password == password)
                         {
-                            var userLogged = await GetUser(username.Text.ToString());
+                            Toast.MakeText(this, "Ładowanie", ToastLength.Short).Show();
 
-                            var serialUserLogged = JsonConvert.SerializeObject(userLogged);
+                            var serialUserLogged = JsonConvert.SerializeObject(userToLog);
 
                             var activity = new Intent(this, typeof(AfterLogin));
 
@@ -68,8 +68,8 @@ namespace test
             //KLIKNIECIE REGISTER
             btnRegister.Click += (sender, e) =>
             {
-                var _activity = new Intent(this, typeof(Register));
-                StartActivity(_activity);
+                var activity = new Intent(this, typeof(Register));
+                StartActivity(activity);
             };
 
         }

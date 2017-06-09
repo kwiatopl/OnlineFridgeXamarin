@@ -9,30 +9,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:color="#35bfe8"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView1"
+        android:textColor="@color/blue" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
+        android:id="@+id/editText1"
+        android:textColor="@color/blue" />
     <TextView
         android:text="Podaj ilość:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:color="#35bfe8"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textColor="@color/blue" />
     <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:inputType="number"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue" />
     <TextView
         android:text="Wybor jednostki:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:color="#35bfe8"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:textColor="@color/blue" />
     <RadioGroup
         android:minWidth="25px"
         android:minHeight="25px"
@@ -45,50 +50,58 @@
             android:id="@+id/kilogramy"
             android:buttonTint="@color/blue"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/blue" />
         <RadioButton
             android:text="Dekagramy"
             android:id="@+id/dekagramy"
             android:buttonTint="@color/blue"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/blue" />
         <RadioButton
             android:text="Gramy"
             android:id="@+id/gramy"
             android:buttonTint="@color/blue"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/blue" />
         <RadioButton
             android:text="Litry"
             android:id="@+id/litry"
             android:layout_width="wrap_content"
             android:buttonTint="@color/blue"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/blue" />
         <RadioButton
             android:text="Mililitry"
             android:id="@+id/mililitry"
             android:buttonTint="@color/blue"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/blue" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/blue"
             android:text="Sztuki"
-            android:id="@+id/sztuki" />
+            android:id="@+id/sztuki"
+            android:textColor="@color/blue" />
     </RadioGroup>
     <TextView
         android:text="Data Ważności:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/date_display1" />
+        android:id="@+id/date_display1"
+        android:textColor="@color/blue" />
     <TextView
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/date_display" />
+        android:id="@+id/date_display"
+        android:textColor="@color/blue" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="23dp"
