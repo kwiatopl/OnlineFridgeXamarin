@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText1"
-        android:textColor="@color/blue" />
+        android:textColor="@color/grey" />
     <TextView
         android:text="Podaj ilość:"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:inputType="number"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue" />
+        android:textColor="@color/grey" />
     <TextView
         android:text="Wybor jednostki:"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/date_display"
-        android:textColor="@color/blue" />
+        android:textColor="@color/grey" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="23dp"

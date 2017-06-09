@@ -51,7 +51,6 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -98,14 +97,13 @@
       <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ListViewAdapterOnline.cs" />
+    <Compile Include="Offline\Synchronize.cs" />
     <Compile Include="Online\AddProductOnline.cs" />
     <Compile Include="Online\AfterLogin.cs" />
-    <Compile Include="CreateShopList.cs" />
     <Compile Include="DataAccess\Model\ProductOnline.cs" />
     <Compile Include="DataAccess\Model\User.cs" />
     <Compile Include="Online\ChangePassword.cs" />
@@ -148,9 +146,6 @@
     <AndroidResource Include="Resources\layout\UpdateProduct.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CreateShopList.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\OnlineMode.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -167,6 +162,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ChangePassword.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Synchronize.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

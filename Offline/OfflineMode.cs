@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
 
-namespace test
+namespace OnlineFridge.Offline
 {
     [Activity(Label = "Twoja lodówka",Theme="@style/CustomTheme2")]
     public class OfflineMode : Activity
@@ -27,7 +17,8 @@ namespace test
 
             Button btnZawartosc = FindViewById<Button>(Resource.Id.button1);
             Button btnDodawanie = FindViewById<Button>(Resource.Id.button2);
-        
+            Button btnSync = FindViewById<Button>(Resource.Id.button3);
+
             btnZawartosc.Click += (x, z) =>
             {
                 var activity = new Intent(this, typeof(FridgeContent));
@@ -37,6 +28,12 @@ namespace test
             btnDodawanie.Click += (x, z) =>
             {
                 var activity = new Intent(this, typeof(AddProduct));
+                StartActivity(activity);
+            };
+
+            btnSync.Click += (x, z) =>
+            {
+                var activity = new Intent(this, typeof(Synchronize));
                 StartActivity(activity);
             };
         }

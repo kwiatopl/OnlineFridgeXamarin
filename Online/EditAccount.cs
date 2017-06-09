@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
-using OnlineFridge.Online;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess.Model;
 
-namespace OnlineFridge
+namespace OnlineFridge.Online
 {
     [Activity(Label = "Edycja konta",Theme="@style/CustomTheme")]
     public class EditAccount : Activity
@@ -24,8 +16,10 @@ namespace OnlineFridge
 
             SetContentView(Resource.Layout.EditAccount);
 
-            var json = Intent.GetStringExtra("SerializedUser");
+            var json = Intent.GetStringExtra("userKonto");
             var actualUser = JsonConvert.DeserializeObject<User>(json);
+
+            Intent.RemoveExtra("userKonto");
 
             var btnChangePass = FindViewById<Button>(Resource.Id.passChange);
             var btnDelUser = FindViewById<Button>(Resource.Id.accountDel);
@@ -34,13 +28,13 @@ namespace OnlineFridge
             {
                 var activity = new Intent(this, typeof(ChangePassword));
 
-                activity.PutExtra("SerializedUser", json);
+                activity.PutExtra("userChangePass", json);
                 StartActivity(activity);
             };
 
             btnDelUser.Click += (x, z) =>
             {
-                
+                // TUTAJ DODAC
             };
 
         }

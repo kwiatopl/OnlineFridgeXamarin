@@ -8,40 +8,33 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Javax.Crypto;
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
-using test.SelectDate;
+using OnlineFridge.DataAccess.Model;
+using OnlineFridge.SelectDate;
 
-namespace test
+namespace OnlineFridge.Online
 {
     [Activity(Label = "Edycja produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class UpdateProductOnline : Activity
     {
         TextView _dateDisplay;
         Button _dateSelectButton;
-        Quantity type;
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-
-            // Ustawienie kultury
-            var userSelectedCulture = new CultureInfo("pl-PL");
-            Thread.CurrentThread.CurrentCulture = userSelectedCulture;
-        }
+        private Quantity type;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.UpdateProduct);
+
             var MyJsonString = Intent.GetStringExtra("ProductToEdit");
+
+            Intent.RemoveExtra("ProductToEdit");
+
             if (!string.IsNullOrWhiteSpace(MyJsonString))
             {
-                var productEdit = JsonConvert.DeserializeObject<ProductOnline>(MyJsonString);
+                var productEdit = new ProductOnline();
+                productEdit = JsonConvert.DeserializeObject<ProductOnline>(MyJsonString);
 
                 Button btnDodaj = FindViewById<Button>(Resource.Id.button1);
                 TextView txtActualCount = FindViewById<TextView>(Resource.Id.textView5);
@@ -96,6 +89,7 @@ namespace test
 
                 _dateDisplay = FindViewById<TextView>(Resource.Id.date_display);
                 _dateSelectButton = FindViewById<Button>(Resource.Id.date_select_button);
+
                 _dateSelectButton.Click += DateSelect_OnClick;
 
                 _dateDisplay.Text = actualExpDate;
@@ -132,24 +126,25 @@ namespace test
 
                 btnDodaj.Click += (x, z) =>
                 {
-                    if ( int.Parse(txtIlosc.Text.ToString()) != 0)
+                    if (int.Parse(txtIlosc.Text.ToString()) != 0)
                     {
                         productEdit.count = int.Parse(txtIlosc.Text.ToString());
                         productEdit.unit = type;
                         productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
 
                         Update(productEdit);
-
-                        Toast.MakeText(this, "Edytowano", ToastLength.Short).Show();
-
-                        var activity = new Intent(this, typeof(OnlineFridgeContent));
-                        StartActivity(activity);
                     }
                     else
                     {
                         Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
                     }
                 };
+            }
+            else
+            {
+                Toast.MakeText(this, "Błąd! Brak obiektu!", ToastLength.Short).Show();
+                var activity = new Intent(this,typeof(OnlineFridgeContent));
+                StartActivity(activity);
             }
         }
 
@@ -165,6 +160,10 @@ namespace test
         private async void Update(ProductOnline productToPut)
         {
             await UpdateProduct(productToPut);
+
+            var activity = new Intent(this, typeof(OnlineFridgeContent));
+
+            StartActivity(activity);
         }
 
 
@@ -172,13 +171,23 @@ namespace test
        {
            using (var client = new HttpClient())
            {
-               client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+               client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                var json = JsonConvert.SerializeObject(product);
 
                var content = new StringContent(json, Encoding.UTF8, "application/json");
-               await client.PostAsync("/api/Product/{" + product.productId +  "}", content);
-           }
+               var response = await client.PutAsync("/api/Product/{" + product.productId + "}", content);
+
+               if (!response.IsSuccessStatusCode)
+               {
+                   Toast.MakeText(this, "Wystąpił błąd!", ToastLength.Short).Show();
+               }
+               else if (response.IsSuccessStatusCode)
+               {
+                   Toast.MakeText(this, "Edytowano!", ToastLength.Short).Show();
+               }
+                    
+            }
        }
        
 

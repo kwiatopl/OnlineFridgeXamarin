@@ -2,10 +2,9 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using OnlineFridge;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess.Model;
 
-namespace test
+namespace OnlineFridge
 {
     class ListViewAdapter: BaseAdapter<Product>
     {

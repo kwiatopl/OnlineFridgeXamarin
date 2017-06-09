@@ -1,35 +1,48 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Provider;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using Java.Util.Jar;
 using Newtonsoft.Json;
-using test;
-using test.DataAccess;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess.Model;
+using OnlineFridge.Offline;
 
-
-
-
-
-namespace OnlineFridge
+namespace OnlineFridge.Online
 {
-    [Activity(Label = "Zawartość Lodówki", NoHistory = true)]
+    [Activity(Label = "Zawartość Lodówki",Theme="@style/CustomTheme2", NoHistory = true)]
     public class OnlineFridgeContent : Activity
     {
         private ListView _listView;
         List<ProductOnline> _productsList = new List<ProductOnline>();
+
+        /*
+        protected override async void OnResume()
+        {
+            base.OnResume();
+
+            var json = Intent.GetStringExtra("userZawartosc");
+            var actualUser = JsonConvert.DeserializeObject<User>(json);
+
+            _productsList = null;
+
+            Intent.RemoveExtra("userZawartosc");
+
+            Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
+
+            _productsList = await GetProduct((long)actualUser.userId);
+
+            var adapter = new ListViewAdapterOnline(this, _productsList);
+            _listView.Adapter = adapter;
+
+            _listView.ItemClick += ListView_ItemClick;
+            _listView.ItemLongClick += ListView_ItemLongClick;
+        }
+        */
 
         protected override async void  OnCreate(Bundle savedInstanceState)
         {
@@ -40,8 +53,10 @@ namespace OnlineFridge
 
             _listView = FindViewById<ListView>(Resource.Id.productListView);
 
-            var json = Intent.GetStringExtra("SerializedUser");
+            var json = Intent.GetStringExtra("userZawartosc");
             var actualUser = JsonConvert.DeserializeObject<User>(json);
+
+            Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
 
             _productsList = await GetProduct((long)actualUser.userId);
 
@@ -76,8 +91,6 @@ namespace OnlineFridge
 
                 DeleteAsync(itemToRemove.productId);
 
-                Toast.MakeText(this, "USUNIĘTO! ", ToastLength.Short).Show();
-
                 var activity = new Intent(this, typeof(OnlineFridgeContent));
                 StartActivity(activity);
             });
@@ -107,7 +120,7 @@ namespace OnlineFridge
 
                 var SerializedObject = JsonConvert.SerializeObject(itemToUpdate);
 
-                var activity = new Intent(this, typeof(UpdateProduct));
+                var activity = new Intent(this, typeof(UpdateProductOnline));
 
                 activity.PutExtra("ProductToEdit", SerializedObject);
 
@@ -131,12 +144,21 @@ namespace OnlineFridge
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
                 var result = await client.GetAsync(String.Format("/api/Product?userId={0}", userId));
 
-                return JsonConvert.DeserializeObject<List<ProductOnline>>(await result.Content.ReadAsStringAsync());
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<List<ProductOnline>>(await result.Content.ReadAsStringAsync());
+                }
+                else
+                {
+                    Toast.MakeText(this, "Wystąpił błąd", ToastLength.Short).Show();
+                    return null;
+                }
             }
         }
 
@@ -144,10 +166,17 @@ namespace OnlineFridge
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
-                await client.DeleteAsync(String.Format("/api/Product/{0}", id));
-            }
+                var response = await client.DeleteAsync(String.Format("/api/Product/{0}", id));
+                if (!response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "Wystąpił błąd", ToastLength.Short).Show();
+                }else if (response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "USUNIĘTO! ", ToastLength.Short).Show();
+                }
+             }
         }
 
 

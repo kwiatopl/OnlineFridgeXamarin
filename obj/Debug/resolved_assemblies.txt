@@ -1,6 +1,5 @@
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\test.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Java.Interop.dll
-D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Microsoft.CSharp.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Mono.Android.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\mscorlib.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Core.dll
@@ -8,7 +7,6 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.IO.Compression.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Net.Http.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.dll
-D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.Linq.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Newtonsoft.Json.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\SQLite-net.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\SQLitePCLRaw.batteries_green.dll
@@ -30,7 +28,6 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Linq.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Runtime.InteropServices.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Runtime.Extensions.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Reflection.Extensions.dll
-D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Mono.CSharp.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Runtime.Serialization.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.ServiceModel.Internals.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Mono.Security.dll
@@ -39,6 +36,7 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Runtime.Numeri
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Numerics.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.XmlDocument.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.XDocument.dll
+D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.Linq.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Globalization.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Threading.Tasks.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Runtime.Serialization.Primitives.dll
@@ -52,5 +50,7 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Xml.ReaderWrit
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Text.Encoding.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Reflection.Primitives.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Text.Encoding.Extensions.dll
+D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Microsoft.CSharp.dll
+D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\Mono.CSharp.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Resources.ResourceManager.dll
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\android\assets\System.Net.Primitives.dll

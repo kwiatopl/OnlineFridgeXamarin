@@ -7,10 +7,9 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess.Model;
 
-namespace test
+namespace OnlineFridge.Online
 {
     [Activity(Label = "Register", Theme = "@style/CustomTheme")]
     public class Register : Activity
@@ -50,7 +49,6 @@ namespace test
 
                     await AddUser(u);       // DODANIE UŻYTKOWNIKA
 
-                    Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
                }
                else
                {
@@ -64,12 +62,22 @@ namespace test
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
                 var result = await client.GetAsync(String.Format("/api/User?email={0}", email));
 
-                return JsonConvert.DeserializeObject<User>(await result.Content.ReadAsStringAsync());       // DESERIALIZACJA OBIEKTU Z FORMATU JSON NA OBIEKT KLASY USER
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<User>(await result.Content
+                        .ReadAsStringAsync()); // DESERIALIZACJA OBIEKTU Z FORMATU JSON NA OBIEKT KLASY USER
+                }
+                else
+                {
+                    Toast.MakeText(this,"Wystąpił błąd!",ToastLength.Short).Show();
+                    return null;
+                }
             }
         }
 
@@ -78,12 +86,20 @@ namespace test
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                 var json = JsonConvert.SerializeObject(user);       // SERIALIZACJA OBIEKTU NA FORMAT JSON
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                await client.PostAsync("/api/User", content);
+                var response = await client.PostAsync("/api/User", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "Wystąpił błąd", ToastLength.Short).Show();
+                }
+                else if (response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
+                }
             }
         }
     }

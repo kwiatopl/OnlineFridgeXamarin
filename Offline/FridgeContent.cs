@@ -1,22 +1,14 @@
-﻿
-using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
-
 using Android.Widget;
-
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess;
+using OnlineFridge.DataAccess.Model;
 
-namespace test
+namespace OnlineFridge.Offline
 {
     [Activity(Label = "Zawartość Lodówki",Theme="@style/CustomTheme2" ,NoHistory = true)] 
     public class FridgeContent : Activity

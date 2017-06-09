@@ -5,7 +5,41 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <ListView
+  <LinearLayout
+    android:orientation="horizontal"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout2"
+    android:paddingLeft="5dp"
+    android:weightSum="75">
+    <TextView
+      android:text="Nazwa"
+      android:layout_width="match_parent"
+      android:layout_weight="25"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textColor="@color/blue"
+      android:layout_height="wrap_content"
+      android:id="@+id/txtViewName" />
+    <TextView
+      android:text="Ilość"
+      android:layout_width="match_parent"
+      android:layout_weight="25"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textColor="@color/blue"
+      android:layout_height="wrap_content"
+      android:id="@+id/txtViewCount" />
+    <TextView
+      android:text="Data ważności"
+      android:layout_width="match_parent"
+      android:layout_weight="25"
+      android:textColor="@color/blue"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:layout_height="wrap_content"
+      android:id="@+id/txtViewExpDate" />
+  </LinearLayout>  
+  <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"

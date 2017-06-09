@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
+using OnlineFridge.DataAccess.Model;
 using SQLite;
-using test.DataAccess.Model;
 using Environment = System.Environment;
 
-namespace test.DataAccess
+namespace OnlineFridge.DataAccess
 {
     public class FridgeDb : IDisposable
     {

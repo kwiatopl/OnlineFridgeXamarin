@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Util;
 using Android.Widget;
 
-namespace test.SelectDate
+namespace OnlineFridge.SelectDate
 {
     public class DatePickerFragment : DialogFragment,
         DatePickerDialog.IOnDateSetListener

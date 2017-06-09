@@ -1,19 +1,15 @@
 ﻿using System;
-
 using System.Globalization;
-using System.Net.Http;
 using Android.App;
 using Android.Content;
 using Android.OS;
-
 using Android.Widget;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
-using test.SelectDate;
+using OnlineFridge.DataAccess;
+using OnlineFridge.DataAccess.Model;
+using OnlineFridge.SelectDate;
 using Thread = System.Threading.Thread;
 
-namespace test
+namespace OnlineFridge.Offline
 { 
     
 [Activity(Label = "Dodawanie Produktu",Theme="@style/CustomTheme2", NoHistory = true)]
@@ -124,7 +120,7 @@ namespace test
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {
-                _dateDisplay.Text = time.ToShortDateString();
+                _dateDisplay.Text = time.ToString("yyyy-MM-dd");
             });
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }

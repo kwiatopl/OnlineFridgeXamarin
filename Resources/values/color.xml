@@ -3,5 +3,6 @@
   <color name="bg">#f2f0e8</color>
   <color name="blue">#35bfe8</color>
   <color name="red">#ff0000</color>
+  <color name="grey">#696969</color>
   <color name="custom_theme_background">#f2f0e8</color>
 </resources>

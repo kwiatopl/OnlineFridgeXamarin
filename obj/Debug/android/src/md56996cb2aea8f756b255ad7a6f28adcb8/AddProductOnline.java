@@ -10,7 +10,6 @@ public class AddProductOnline
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onStop:()V:GetOnStopHandler\n" +
 			"";
@@ -24,14 +23,6 @@ public class AddProductOnline
 		if (getClass () == AddProductOnline.class)
 			mono.android.TypeManager.Activate ("test.AddProductOnline, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
-
-
-	public void onResume ()
-	{
-		n_onResume ();
-	}
-
-	private native void n_onResume ();
 
 
 	public void onCreate (android.os.Bundle p0)

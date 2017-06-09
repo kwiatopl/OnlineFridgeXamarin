@@ -22,7 +22,6 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\fridgecontent.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\addproduct.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\listview_row.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\updateproduct.xml
-D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\createshoplist.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\onlinemode.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\register.xml
 D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\afterlogin.xml
@@ -43,3 +42,5 @@ D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\onlinefridgecontent.xml
 D:\Mobilna apka PROJEKT\test\test\bin\Debug\System.Net.Http.Extensions.dll
 D:\Mobilna apka PROJEKT\test\test\bin\Debug\System.Net.Http.Formatting.dll
 D:\Mobilna apka PROJEKT\test\test\bin\Debug\System.Net.Http.Primitives.dll
+D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\changepassword.xml
+D:\Mobilna apka PROJEKT\test\test\obj\Debug\res\layout\synchronize.xml

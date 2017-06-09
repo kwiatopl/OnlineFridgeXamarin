@@ -15,13 +15,13 @@
         android:textColor="@color/blue" />
     <EditText
         android:hint="Podaj adres email"
-      android:textColorHint="#808080"
+      android:textColorHint="#C0C0C0"
         android:editable="true"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/username"
-        android:textColor="@color/blue" />
+        android:textColor="@color/grey" />
     <TextView
         android:text="PASSWORD"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -34,12 +34,12 @@
         android:layout_marginBottom="10.0dp" />
     <EditText
         android:hint="Podaj hasło"
-      android:textColorHint="#808080"
+      android:textColorHint="#C0C0C0"
         android:editable="true"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:textColor="@color/grey"
         android:id="@+id/password" />
     <Space
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
         android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:textColor="@color/red"
         android:id="@+id/badPass" />
   <Space

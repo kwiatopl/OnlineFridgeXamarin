@@ -6,24 +6,26 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <application android:label="OnlineFridge" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="Edycja konta" android:theme="@style/CustomTheme" android:name="md52b697feb66b01b6b2a3b04867fd571d3.EditAccount" />
-    <activity android:label="Zawartość Lodówki" android:noHistory="true" android:name="md52b697feb66b01b6b2a3b04867fd571d3.OnlineFridgeContent" />
-    <activity android:label="Dodawanie Produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.AddProductOnline" />
-    <activity android:label="Twoja lodówka" android:theme="@style/CustomTheme" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.AfterLogin" />
-    <activity android:label="CreateShopList" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.CreateShopList" />
-    <activity android:label="Edycja produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.UpdateProduct" />
-    <activity android:label="Dodawanie Produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.AddProduct" />
-    <activity android:label="OnlineMode" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.OnlineMode" />
-    <activity android:label="Register" android:theme="@style/CustomTheme" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.Register" />
-    <activity android:label="Zawartość Lodówki" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.FridgeContent" />
-    <activity android:label="Twoja lodówka" android:theme="@style/CustomTheme2" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.OfflineMode" />
-    <activity android:theme="@style/CustomTheme" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.MainActivity" />
-    <activity android:icon="@drawable/icon" android:label="Splash Screen App" android:noHistory="true" android:theme="@style/Theme.Splash" android:name="md56996cb2aea8f756b255ad7a6f28adcb8.SplashScreen">
+    <activity android:theme="@style/CustomTheme" android:name="md52b697feb66b01b6b2a3b04867fd571d3.MainActivity" />
+    <activity android:icon="@drawable/icon" android:label="Splash Screen App" android:noHistory="true" android:theme="@style/Theme.Splash" android:name="md52b697feb66b01b6b2a3b04867fd571d3.SplashScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="Dodawanie Produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md52845cba4f7711a50ab7797dfb2ce515f.AddProductOnline" />
+    <activity android:label="Twoja lodówka" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.AfterLogin" />
+    <activity android:label="Zmiana hasła" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.ChangePassword" />
+    <activity android:label="Edycja konta" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.EditAccount" />
+    <activity android:label="Zawartość Lodówki" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md52845cba4f7711a50ab7797dfb2ce515f.OnlineFridgeContent" />
+    <activity android:label="OnlineMode" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.OnlineMode" />
+    <activity android:label="Register" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.Register" />
+    <activity android:label="Edycja produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md52845cba4f7711a50ab7797dfb2ce515f.UpdateProductOnline" />
+    <activity android:label="Synchronize" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.Synchronize" />
+    <activity android:label="Edycja produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.UpdateProduct" />
+    <activity android:label="Dodawanie Produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.AddProduct" />
+    <activity android:label="Zawartość Lodówki" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.FridgeContent" />
+    <activity android:label="Twoja lodówka" android:theme="@style/CustomTheme2" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.OfflineMode" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="OnlineFridge.OnlineFridge.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

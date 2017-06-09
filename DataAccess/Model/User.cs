@@ -1,5 +1,5 @@
 ﻿
-namespace test.DataAccess.Model
+namespace OnlineFridge.DataAccess.Model
 {
     public class User
     {

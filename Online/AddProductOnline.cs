@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +7,10 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
-using test.SelectDate;
-using Thread = System.Threading.Thread;
+using OnlineFridge.DataAccess.Model;
+using OnlineFridge.SelectDate;
 
-namespace test
+namespace OnlineFridge.Online
 { 
     
 [Activity(Label = "Dodawanie Produktu",Theme = "@style/CustomTheme2", NoHistory = true)]
@@ -24,23 +20,21 @@ namespace test
         Button _dateSelectButton;
         Quantity type;
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-
-            // Ustawienie kultury
-            var userSelectedCulture = new CultureInfo("pl-PL");
-            Thread.CurrentThread.CurrentCulture = userSelectedCulture;
-        }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.AddProduct);
 
-            var json = Intent.GetStringExtra("SerializedUser");
-            var actualUser = JsonConvert.DeserializeObject<User>(json);
+            var actualUser = new User();
+
+            var json = Intent.GetStringExtra("userDodawanie");
+            if (json != null)
+            {
+                actualUser = JsonConvert.DeserializeObject<User>(json);
+            }
+
+            Intent.RemoveExtra("userDodawanie");
 
             Button btnDodaj = FindViewById<Button>(Resource.Id.button1);
             EditText txtNazwa = FindViewById<EditText>(Resource.Id.editText1);
@@ -92,6 +86,7 @@ namespace test
                 {
                     ProductOnline produkt = new ProductOnline();
 
+                    produkt.productId = 0;
                     produkt.name = txtNazwa.Text.ToString().ToUpper();
                     produkt.count = int.Parse(txtIlosc.Text.ToString());
                     produkt.unit = type;
@@ -101,7 +96,6 @@ namespace test
                     
                     PostProduct(produkt);
 
-                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
                     var activity = new Intent(this, typeof(AddProductOnline));
                     StartActivity(activity);
                 }
@@ -130,20 +124,29 @@ namespace test
 
         private async void PostProduct(ProductOnline productToPost)
         {
-            await UpdateProduct(productToPost);
+            await AddProduct(productToPost);
         }
 
-        public async Task UpdateProduct(ProductOnline product)
+        public async Task AddProduct(ProductOnline product)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                 var json = JsonConvert.SerializeObject(product);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                await client.PostAsync("/api/Product", content);
+                var response = await client.PostAsync("/api/Product", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "Wystąpił błąd!", ToastLength.Short).Show();
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
+                }
             }
         }
     }

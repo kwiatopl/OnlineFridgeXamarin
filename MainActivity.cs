@@ -1,16 +1,11 @@
 ﻿using Android.App;
-using Android.Widget;
-using Android.OS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.Content;
 using Android.Graphics;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
-
-namespace test
+using Android.OS;
+using Android.Widget;
+using OnlineFridge.Offline;
+using OnlineFridge.Online;
+namespace OnlineFridge
 {
     [Activity(Theme = "@style/CustomTheme")]
     public class MainActivity : Activity

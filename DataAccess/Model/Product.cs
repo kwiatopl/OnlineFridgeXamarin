@@ -1,8 +1,8 @@
 ﻿using SQLite;
 
-namespace test.DataAccess.Model
+namespace OnlineFridge.DataAccess.Model
 {
-    public class Product 
+    public class Product
     {
         [PrimaryKey, AutoIncrement, Unique]
         public int productId { get; set; }
@@ -17,6 +17,7 @@ namespace test.DataAccess.Model
         {
             return name + ", "+ count + " " + unit + ", Data ważności:" + expDate ;
         }
+
     }
  
     

@@ -5,14 +5,12 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Javax.Crypto;
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess;
-using test.DataAccess.Model;
-using test.SelectDate;
+using OnlineFridge.DataAccess;
+using OnlineFridge.DataAccess.Model;
+using OnlineFridge.SelectDate;
 
-namespace test
+namespace OnlineFridge.Offline
 {
     [Activity(Label = "Edycja produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class UpdateProduct : Activity

@@ -7,10 +7,9 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Newtonsoft.Json;
-using OnlineFridge;
-using test.DataAccess.Model;
+using OnlineFridge.DataAccess.Model;
 
-namespace test
+namespace OnlineFridge.Online
 {
     [Activity(Label = "OnlineMode",Theme = "@style/CustomTheme", NoHistory = true)]
     public class OnlineMode : Activity
@@ -32,25 +31,26 @@ namespace test
             Button btnRegister = FindViewById<Button>(Resource.Id.buttonRegister);
 
             //KLIKNIĘCIE LOGIN
-           
-                btnLogin.Click += async (sender, e) =>
+
+            btnLogin.Click += async (sender, e) =>
+            {
+                if (!String.IsNullOrEmpty(username.Text.ToString()) && !String.IsNullOrEmpty(pass.Text.ToString()))
                 {
-                    if (!String.IsNullOrEmpty(username.Text.ToString()) && !String.IsNullOrEmpty(pass.Text.ToString()))
+                    var login = username.Text.ToString();
+                    var password = pass.Text.ToString();
+
+                    Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
+
+                    var userToLog = await GetUser(login);
+                    if (userToLog != null)
                     {
-                        var login = username.Text.ToString();
-                        var password = pass.Text.ToString();
-
-                        var userToLog = await GetUser(login);
-
                         if (userToLog.email == login && userToLog.password == password)
-                        {
-                            Toast.MakeText(this, "Ładowanie", ToastLength.Short).Show();
+                        { 
+                            var activity = new Intent(this, typeof(AfterLogin));
 
                             var serialUserLogged = JsonConvert.SerializeObject(userToLog);
 
-                            var activity = new Intent(this, typeof(AfterLogin));
-
-                            activity.PutExtra("ActualUser", serialUserLogged);
+                            activity.PutExtra("SerializedUser", serialUserLogged);
 
                             StartActivity(activity);
                         }
@@ -61,9 +61,14 @@ namespace test
                     }
                     else
                     {
-                        Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
+                        badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
                     }
-                };
+                }
+                else
+                {
+                    Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
+                }
+            };
 
             //KLIKNIECIE REGISTER
             btnRegister.Click += (sender, e) =>
@@ -79,12 +84,19 @@ namespace test
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.102:61913/");
+                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var result = await client.GetAsync(String.Format("/api/User?email={0}", email));
-
-                return JsonConvert.DeserializeObject<User>(await result.Content.ReadAsStringAsync());       // DESERIALIZACJA OBIEKTU Z FORMATU JSON NA OBIEKT KLASY USER
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<User>(await result.Content
+                        .ReadAsStringAsync()); // DESERIALIZACJA OBIEKTU Z FORMATU JSON NA OBIEKT KLASY USER
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
     }
