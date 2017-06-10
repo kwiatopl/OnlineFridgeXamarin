@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
@@ -22,6 +23,8 @@ namespace OnlineFridge.Online
 
             SetContentView(Resource.Layout.ChangePassword);
 
+            string regString = @"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).*$";
+            Regex correctPass = new Regex(regString);
             flag = false;
             var actualUser = new User();
 
@@ -48,28 +51,34 @@ namespace OnlineFridge.Online
                 {
                     if (newPass.Text.ToString() == newPassConf.Text.ToString())
                     {
-                        if (newPass.Text.ToString() != actualUser.password)
+                        if (correctPass.IsMatch(newPass.Text.ToString()))
                         {
-                            //WARUNEK SPEŁNIONY
-                            actualUser.password = newPass.Text.ToString();
-                            actualUser.passwordHash = newPass.Text.ToString();
-
-                            Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
-                            //EWENTUALNY HASH
-                            Update(actualUser);
-
-                            Thread.Sleep(2000);
-                            if (flag)
+                            if (newPass.Text.ToString() != actualUser.password)
                             {
-                                Toast.MakeText(this, "Zmieniono hasło!", ToastLength.Short).Show();
+                                //WARUNEK SPEŁNIONY
+                                actualUser.password = newPass.Text.ToString();
+                                actualUser.passwordHash = newPass.Text.ToString();
 
-                                var activity = new Intent(this, typeof(ChangePassword));
-                                StartActivity(activity);
+                                Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
+                                //EWENTUALNY HASH
+                                Update(actualUser);
+
+                                Thread.Sleep(2000);
+                                    Toast.MakeText(this, "Zmieniono hasło!", ToastLength.Short).Show();
+
+                                    var activity = new Intent(this, typeof(ChangePassword));
+                                    StartActivity(activity);
+                                
+                            }
+                            else
+                            {
+                                error.Text = "Nie można zmienić hasła na to samo!";
                             }
                         }
                         else
                         {
-                            error.Text = "Nie można zmienić hasła na to samo!";
+                            error.Text =
+                                "Hasło musi mieć długość co najmniej 8 znaków oraz musi zawierać: jedną małą litere, jedną dużą litere, jedną cyfre oraz jeden symbol!";
                         }
                     }
                     else
@@ -88,7 +97,6 @@ namespace OnlineFridge.Online
         private async void Update(User userToPut)
         {
             await UpdateUser(userToPut);
-            flag = true;
         }
 
         public async Task UpdateUser(User user)

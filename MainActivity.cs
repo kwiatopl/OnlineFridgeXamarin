@@ -35,6 +35,12 @@ namespace OnlineFridge
 
             
         }
+
+        public override void OnBackPressed()
+        {
+            //base.OnBackPressed();
+            // WYCHODZENIE Z APLIKACJI
+        }
     }
 }
 

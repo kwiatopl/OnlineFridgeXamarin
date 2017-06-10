@@ -8,6 +8,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType ="textShortMessage"
         android:color="#35bfe8"
         android:id="@+id/textView1"
         android:textColor="@color/blue" />

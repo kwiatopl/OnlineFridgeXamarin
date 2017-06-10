@@ -90,6 +90,7 @@ namespace OnlineFridge.Online
                 _productsList.Remove(itemToRemove);
 
                 DeleteAsync(itemToRemove.productId);
+                Toast.MakeText(this, "Usunięto!", ToastLength.Short).Show();
 
                 var activity = new Intent(this, typeof(OnlineFridgeContent));
                 StartActivity(activity);
@@ -102,10 +103,12 @@ namespace OnlineFridge.Online
             dialog.Show();
         }
 
+        
         private async void DeleteAsync(long id)
         {
             await DeleteProduct(id);
         }
+        
 
         void EditConfirmation(ProductOnline product)
         {
@@ -169,13 +172,7 @@ namespace OnlineFridge.Online
                 client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                 var response = await client.DeleteAsync(String.Format("/api/Product/{0}", id));
-                if (!response.IsSuccessStatusCode)
-                {
-                    Toast.MakeText(this, "Wystąpił błąd", ToastLength.Short).Show();
-                }else if (response.IsSuccessStatusCode)
-                {
-                    Toast.MakeText(this, "USUNIĘTO! ", ToastLength.Short).Show();
-                }
+                
              }
         }
 

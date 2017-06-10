@@ -96,6 +96,7 @@ namespace OnlineFridge.Online
                     
                     PostProduct(produkt);
 
+                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
                     var activity = new Intent(this, typeof(AddProductOnline));
                     StartActivity(activity);
                 }
@@ -121,12 +122,12 @@ namespace OnlineFridge.Online
             base.OnStop();
             Finish();
         }
-
+        
         private async void PostProduct(ProductOnline productToPost)
         {
             await AddProduct(productToPost);
         }
-
+        
         public async Task AddProduct(ProductOnline product)
         {
             using (var client = new HttpClient())
@@ -138,15 +139,6 @@ namespace OnlineFridge.Online
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var response = await client.PostAsync("/api/Product", content);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    Toast.MakeText(this, "Wystąpił błąd!", ToastLength.Short).Show();
-                }
-                if (response.IsSuccessStatusCode)
-                {
-                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
-                }
             }
         }
     }

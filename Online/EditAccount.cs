@@ -61,19 +61,10 @@ namespace OnlineFridge.Online
             {
                 DeleteAsync(userIdToDelete);
 
-                if (flag)
-                {
-                    var activity = new Intent(this, typeof(MainActivity));
-
-                    activity.SetFlags(ActivityFlags.NewTask);
-                    activity.SetFlags(ActivityFlags.ClearTask);
+                Toast.MakeText(this, "Usunięto użytkownika!", ToastLength.Short).Show();
+                var activity = new Intent(this, typeof(MainActivity));
 
                     StartActivity(activity);
-                }
-                else
-                {
-                    Toast.MakeText(this,"Ups! Coś poszło nie tak :(",ToastLength.Short).Show();
-                }
             });
 
             alert.SetNegativeButton("Anuluj", (senderAlert, args) =>
@@ -95,15 +86,6 @@ namespace OnlineFridge.Online
                 client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                 var response = await client.DeleteAsync(String.Format("/api/User/{0}", id));
-                if (!response.IsSuccessStatusCode)
-                {
-                    Toast.MakeText(this, "Wystąpił błąd", ToastLength.Short).Show();
-                }
-                else if (response.IsSuccessStatusCode)
-                {
-                    flag = true;
-                    Toast.MakeText(this, "USUNIĘTO! ", ToastLength.Short).Show();
-                }
             }
         }
     }

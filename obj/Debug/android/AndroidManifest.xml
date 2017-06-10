@@ -18,8 +18,8 @@
     <activity android:label="Zmiana hasła" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.ChangePassword" />
     <activity android:label="Edycja konta" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.EditAccount" />
     <activity android:label="Zawartość Lodówki" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md52845cba4f7711a50ab7797dfb2ce515f.OnlineFridgeContent" />
-    <activity android:label="OnlineMode" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.OnlineMode" />
-    <activity android:label="Register" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.Register" />
+    <activity android:label="OnlineMode" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.OnlineMode" />
+    <activity android:label="Register" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md52845cba4f7711a50ab7797dfb2ce515f.Register" />
     <activity android:label="Edycja produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md52845cba4f7711a50ab7797dfb2ce515f.UpdateProductOnline" />
     <activity android:label="Synchronize" android:noHistory="true" android:theme="@style/CustomTheme" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.Synchronize" />
     <activity android:label="Edycja produktu" android:noHistory="true" android:theme="@style/CustomTheme2" android:name="md57fa55112e6717fb8f5c9af63c38bdcec.UpdateProduct" />

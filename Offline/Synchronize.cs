@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Android.App;
@@ -42,16 +43,23 @@ namespace OnlineFridge.Offline
                 {
                     if (user.email != null)
                     {
-                        if (txtLogin.Text.ToString() == user.email && txtPassword.Text.ToString() == user.password)
+                        if (IsValidLogin(txtLogin.Text.ToString()))
                         {
-                            Toast.MakeText(this, "Synchronizowanie...", ToastLength.Short).Show();
-                            SyncConfirmation(user.userId);
-                            Toast.MakeText(this, "Pomyślnie zsynchronizowano!", ToastLength.Short).Show();
+                            if (txtLogin.Text.ToString() == user.email && txtPassword.Text.ToString() == user.password)
+                            {
+                                SyncConfirmation(user.userId);
+                            }
+                            else
+                            {
+                                error.Text = "Błędne hasło lub email!";
+                            }
                         }
                         else
                         {
-                            error.Text = "Błędne hasło lub email!";
+                            error.Text = "Nieprawidłowy format email!";
                         }
+
+
                     }
                     else
                     {
@@ -66,6 +74,21 @@ namespace OnlineFridge.Offline
 
 
         }
+
+        private bool IsValidLogin(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
 
         public async Task<User> GetUser(string email)
         {
@@ -122,6 +145,7 @@ namespace OnlineFridge.Offline
                 var productsList = new List<Product>();
                 productsList = await GetProduct(userId);
                 Sync(productsList);
+                Toast.MakeText(this, "Pomyślnie zsynchronizowano!", ToastLength.Short).Show();
             });
 
             alert.SetNegativeButton("Anuluj", (senderAlert, args) => { });

@@ -135,20 +135,16 @@ namespace OnlineFridge.Online
                         productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
 
                         Update(productEdit);
+                        Toast.MakeText(this, "Edytowano!", ToastLength.Short).Show();
 
-                        if (flag)
-                        {
-                            var activity = new Intent(this, typeof(OnlineFridgeContent));
+                        var activity = new Intent(this, typeof(OnlineFridgeContent));
 
                             activity.SetFlags(ActivityFlags.NewTask);
                             activity.SetFlags(ActivityFlags.ClearTask);
 
                             StartActivity(activity);
-                        }
-                        else
-                        {
-                            Toast.MakeText(this, "Ups! Coś poszło nie tak :(", ToastLength.Short).Show();
-                        }
+                        
+                     
                     }
                     else
                     {
@@ -178,7 +174,6 @@ namespace OnlineFridge.Online
                 await UpdateProduct(productToPut);   
         }
 
-
        public async Task UpdateProduct(ProductOnline product)
        {
            using (var client = new HttpClient())
@@ -189,18 +184,7 @@ namespace OnlineFridge.Online
                var json = JsonConvert.SerializeObject(product);
 
                var content = new StringContent(json, Encoding.UTF8, "application/json");
-               var response = await client.PutAsync("/api/Product", content);
-
-               if (!response.IsSuccessStatusCode)
-               {
-                   Toast.MakeText(this, "Wystąpił błąd!", ToastLength.Short).Show();
-               }
-               else if (response.IsSuccessStatusCode)
-               {
-                   flag = true;
-                   Toast.MakeText(this, "Edytowano!", ToastLength.Short).Show();
-               }
-                    
+               var response = await client.PutAsync("/api/Product", content);        
             }
        }
        

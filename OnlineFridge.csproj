@@ -100,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HashAndSalt.cs" />
     <Compile Include="ListViewAdapterOnline.cs" />
     <Compile Include="Offline\Synchronize.cs" />
     <Compile Include="Online\AddProductOnline.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -8,10 +9,11 @@ using Android.OS;
 using Android.Widget;
 using Newtonsoft.Json;
 using OnlineFridge.DataAccess.Model;
+using System.Net.Mail;
 
 namespace OnlineFridge.Online
 {
-    [Activity(Label = "OnlineMode",Theme = "@style/CustomTheme", NoHistory = true)]
+    [Activity(Label = "OnlineMode",Theme = "@style/CustomTheme")]
     public class OnlineMode : Activity
     {
 
@@ -35,49 +37,58 @@ namespace OnlineFridge.Online
 
             //KLIKNIĘCIE LOGIN
 
+
             btnLogin.Click += async (sender, e) =>
             {
                 flag = false;
+
                 if (!String.IsNullOrEmpty(username.Text.ToString()) && !String.IsNullOrEmpty(pass.Text.ToString()))
                 {
-                    var login = username.Text.ToString();
-                    var password = pass.Text.ToString();
-
-                    Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
-
-                    var userToLog = await GetUser(login);
-
-                    if(!flag)
+                    if (IsValidLogin(username.Text.ToString()))
                     {
-                    if (userToLog != null)
-                    {
-                        if (userToLog.email == login && userToLog.password == password)
+                        var login = username.Text.ToString();
+                        var password = pass.Text.ToString();
+
+                        Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
+
+                        var userToLog = await GetUser(login);
+
+                        if (!flag)
                         {
-                            var activity = new Intent(this, typeof(AfterLogin));
+                            if (userToLog != null)
+                            {
+                                if (userToLog.email == login && userToLog.password == password)
+                                {
+                                    var activity = new Intent(this, typeof(AfterLogin));
 
-                            var serialUserLogged = JsonConvert.SerializeObject(userToLog);
+                                    var serialUserLogged = JsonConvert.SerializeObject(userToLog);
 
-                            activity.PutExtra("SerializedUser", serialUserLogged);
+                                    activity.PutExtra("SerializedUser", serialUserLogged);
 
-                            StartActivity(activity);
-                        }
-                        else
-                        {
-                            badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
+                                    StartActivity(activity);
+                                }
+                                else
+                                {
+                                    badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
+                                }
+                            }
+                            else
+                            {
+                                badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
+                            }
+
                         }
                     }
                     else
                     {
-                        badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
-                    }
-                    
+                        badLoginOrPass.Text = "NIEPRAWIDŁOWY FORMAT EMAIL!";
                     }
                 }
                 else
                 {
                     Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
                 }
-        };
+            };
 
             //KLIKNIECIE REGISTER
             btnRegister.Click += (sender, e) =>
@@ -86,6 +97,20 @@ namespace OnlineFridge.Online
                 StartActivity(activity);
             };
 
+        }
+
+        private bool IsValidLogin(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
 
         // METODA POBIERAJACA UZYTKOWNIKA PO POLU EMAIL
@@ -111,7 +136,6 @@ namespace OnlineFridge.Online
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
             flag = true;
             var activity = new Intent(this, typeof(MainActivity));
             activity.SetFlags(ActivityFlags.NewTask);
