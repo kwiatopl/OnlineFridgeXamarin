@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -14,14 +15,21 @@ namespace OnlineFridge.Online
     [Activity(Label = "Zmiana hasła", Theme="@style/CustomTheme", NoHistory = true)]
     public class ChangePassword : Activity
     {
+        private bool flag;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.ChangePassword);
 
+            flag = false;
+            var actualUser = new User();
+
             var json = Intent.GetStringExtra("userChangePass");
-            var actualUser = JsonConvert.DeserializeObject<User>(json);
+            if (json != null)
+            {
+                actualUser = JsonConvert.DeserializeObject<User>(json);
+            }
 
             Intent.RemoveExtra("userChangePass");
 
@@ -45,14 +53,19 @@ namespace OnlineFridge.Online
                             //WARUNEK SPEŁNIONY
                             actualUser.password = newPass.Text.ToString();
                             actualUser.passwordHash = newPass.Text.ToString();
-                            
+
+                            Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
                             //EWENTUALNY HASH
                             Update(actualUser);
 
-                            Toast.MakeText(this, "Zmieniono hasło!", ToastLength.Short).Show();
+                            Thread.Sleep(2000);
+                            if (flag)
+                            {
+                                Toast.MakeText(this, "Zmieniono hasło!", ToastLength.Short).Show();
 
-                            var activity = new Intent(this, typeof(ChangePassword));
-                            StartActivity(activity);
+                                var activity = new Intent(this, typeof(ChangePassword));
+                                StartActivity(activity);
+                            }
                         }
                         else
                         {
@@ -75,6 +88,7 @@ namespace OnlineFridge.Online
         private async void Update(User userToPut)
         {
             await UpdateUser(userToPut);
+            flag = true;
         }
 
         public async Task UpdateUser(User user)
@@ -87,7 +101,7 @@ namespace OnlineFridge.Online
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync("/api/User/{" + user.userId + "}", content);
+                var response = await client.PutAsync("/api/User", content);
 
                 if (!response.IsSuccessStatusCode)
                 {

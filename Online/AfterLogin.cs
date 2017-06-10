@@ -61,7 +61,7 @@ namespace OnlineFridge.Online
 
             btnWyloguj.Click += (x, z) =>
             {
-                var activity = new Intent(this, typeof(OnlineMode));
+                var activity = new Intent(this, typeof(MainActivity));
 
                 activity.SetFlags(ActivityFlags.NewTask);
                 activity.SetFlags(ActivityFlags.ClearTask);
@@ -70,30 +70,9 @@ namespace OnlineFridge.Online
             };
         }
 
-        /*
-        public async Task<List<ProductOnline>> GetProduct()
+        public override void OnBackPressed()
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://192.168.0.102:52080/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync("/api/Product");
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert
-                        .DeserializeObject<IEnumerable<ProductOnline>>(await response.Content.ReadAsStringAsync())
-                        .ToList();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            
+            Toast.MakeText(this, "Aby wyjść naciśnij 'WYLOGUJ'", ToastLength.Short).Show();
         }
-        */
-        
     }
 }

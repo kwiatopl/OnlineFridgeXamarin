@@ -17,6 +17,7 @@ namespace OnlineFridge.Online
     [Activity(Label = "Edycja produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class UpdateProductOnline : Activity
     {
+        private bool flag;
         TextView _dateDisplay;
         Button _dateSelectButton;
         private Quantity type;
@@ -27,6 +28,7 @@ namespace OnlineFridge.Online
 
             SetContentView(Resource.Layout.UpdateProduct);
 
+            flag = false;
             var MyJsonString = Intent.GetStringExtra("ProductToEdit");
 
             Intent.RemoveExtra("ProductToEdit");
@@ -133,6 +135,20 @@ namespace OnlineFridge.Online
                         productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
 
                         Update(productEdit);
+
+                        if (flag)
+                        {
+                            var activity = new Intent(this, typeof(OnlineFridgeContent));
+
+                            activity.SetFlags(ActivityFlags.NewTask);
+                            activity.SetFlags(ActivityFlags.ClearTask);
+
+                            StartActivity(activity);
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Ups! Coś poszło nie tak :(", ToastLength.Short).Show();
+                        }
                     }
                     else
                     {
@@ -159,11 +175,7 @@ namespace OnlineFridge.Online
 
         private async void Update(ProductOnline productToPut)
         {
-            await UpdateProduct(productToPut);
-
-            var activity = new Intent(this, typeof(OnlineFridgeContent));
-
-            StartActivity(activity);
+                await UpdateProduct(productToPut);   
         }
 
 
@@ -171,12 +183,13 @@ namespace OnlineFridge.Online
        {
            using (var client = new HttpClient())
            {
+               
                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
 
                var json = JsonConvert.SerializeObject(product);
 
                var content = new StringContent(json, Encoding.UTF8, "application/json");
-               var response = await client.PutAsync("/api/Product/{" + product.productId + "}", content);
+               var response = await client.PutAsync("/api/Product", content);
 
                if (!response.IsSuccessStatusCode)
                {
@@ -184,6 +197,7 @@ namespace OnlineFridge.Online
                }
                else if (response.IsSuccessStatusCode)
                {
+                   flag = true;
                    Toast.MakeText(this, "Edytowano!", ToastLength.Short).Show();
                }
                     

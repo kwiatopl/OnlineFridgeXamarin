@@ -14,6 +14,9 @@ namespace OnlineFridge.Online
     [Activity(Label = "OnlineMode",Theme = "@style/CustomTheme", NoHistory = true)]
     public class OnlineMode : Activity
     {
+
+        public bool flag;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,6 +37,7 @@ namespace OnlineFridge.Online
 
             btnLogin.Click += async (sender, e) =>
             {
+                flag = false;
                 if (!String.IsNullOrEmpty(username.Text.ToString()) && !String.IsNullOrEmpty(pass.Text.ToString()))
                 {
                     var login = username.Text.ToString();
@@ -42,10 +46,13 @@ namespace OnlineFridge.Online
                     Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
 
                     var userToLog = await GetUser(login);
+
+                    if(!flag)
+                    {
                     if (userToLog != null)
                     {
                         if (userToLog.email == login && userToLog.password == password)
-                        { 
+                        {
                             var activity = new Intent(this, typeof(AfterLogin));
 
                             var serialUserLogged = JsonConvert.SerializeObject(userToLog);
@@ -63,12 +70,14 @@ namespace OnlineFridge.Online
                     {
                         badLoginOrPass.Text = "NIEPRAWIDŁOWE HASŁO LUB UŻYTKOWNIK!";
                     }
+                    
+                    }
                 }
                 else
                 {
                     Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
                 }
-            };
+        };
 
             //KLIKNIECIE REGISTER
             btnRegister.Click += (sender, e) =>
@@ -98,6 +107,22 @@ namespace OnlineFridge.Online
                     return null;
                 }
             }
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            flag = true;
+            var activity = new Intent(this, typeof(MainActivity));
+            activity.SetFlags(ActivityFlags.NewTask);
+            activity.SetFlags(ActivityFlags.ClearTask);
+            StartActivity(activity);
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Finish();
         }
     }
 }
