@@ -6,8 +6,9 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <application android:label="OnlineFridge" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="ExitActivity" android:name="md52b697feb66b01b6b2a3b04867fd571d3.ExitActivity" />
     <activity android:theme="@style/CustomTheme" android:name="md52b697feb66b01b6b2a3b04867fd571d3.MainActivity" />
-    <activity android:icon="@drawable/icon" android:label="Splash Screen App" android:noHistory="true" android:theme="@style/Theme.Splash" android:name="md52b697feb66b01b6b2a3b04867fd571d3.SplashScreen">
+    <activity android:icon="@drawable/icon" android:label="Internetowa lodówka" android:noHistory="true" android:theme="@style/Theme.Splash" android:name="md52b697feb66b01b6b2a3b04867fd571d3.SplashScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -35,4 +36,5 @@
       </intent-filter>
     </receiver>
   </application>
+  <activity android:name="com.example.ExitActivity" android:theme="@android:style/Theme.NoDisplay" android:autoRemoveFromRecents="true" />
 </manifest>

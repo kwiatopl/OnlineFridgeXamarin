@@ -16,7 +16,7 @@ namespace OnlineFridge.Online
     [Activity(Label = "Zmiana hasła", Theme="@style/CustomTheme", NoHistory = true)]
     public class ChangePassword : Activity
     {
-        private bool flag;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,8 +24,7 @@ namespace OnlineFridge.Online
             SetContentView(Resource.Layout.ChangePassword);
 
             string regString = @"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).*$";
-            Regex correctPass = new Regex(regString);
-            flag = false;
+            Regex correctPass = new Regex(regString);          
             var actualUser = new User();
 
             var json = Intent.GetStringExtra("userChangePass");
@@ -47,17 +46,19 @@ namespace OnlineFridge.Online
 
             buttonChange.Click += (x, z) =>
             {
-                if (actualPass.Text.ToString() == actualUser.password)
+                if (HashAndSalt.Verify(actualUser.salt, actualUser.passwordHash, actualPass.Text.ToString()))
                 {
                     if (newPass.Text.ToString() == newPassConf.Text.ToString())
                     {
                         if (correctPass.IsMatch(newPass.Text.ToString()))
                         {
-                            if (newPass.Text.ToString() != actualUser.password)
+                            var hashsalt = new HashAndSalt(newPass.Text.ToString());
+
+                            if (hashsalt.Hash != actualUser.passwordHash)
                             {
                                 //WARUNEK SPEŁNIONY
-                                actualUser.password = newPass.Text.ToString();
-                                actualUser.passwordHash = newPass.Text.ToString();
+                                actualUser.passwordHash = hashsalt.Hash;
+                                actualUser.salt = hashsalt.Salt;
 
                                 Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
                                 //EWENTUALNY HASH

@@ -45,7 +45,8 @@ namespace OnlineFridge.Offline
                     {
                         if (IsValidLogin(txtLogin.Text.ToString()))
                         {
-                            if (txtLogin.Text.ToString() == user.email && txtPassword.Text.ToString() == user.password)
+                            
+                            if (txtLogin.Text.ToString() == user.email && HashAndSalt.Verify(user.salt, user.passwordHash, txtPassword.Text.ToString()))
                             {
                                 SyncConfirmation(user.userId);
                             }

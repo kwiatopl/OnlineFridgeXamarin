@@ -17,7 +17,7 @@ namespace OnlineFridge.Online
     [Activity(Label = "Edycja produktu",Theme="@style/CustomTheme2", NoHistory = true)]
     public class UpdateProductOnline : Activity
     {
-        private bool flag;
+        
         TextView _dateDisplay;
         Button _dateSelectButton;
         private Quantity type;
@@ -28,7 +28,7 @@ namespace OnlineFridge.Online
 
             SetContentView(Resource.Layout.UpdateProduct);
 
-            flag = false;
+            
             var MyJsonString = Intent.GetStringExtra("ProductToEdit");
 
             Intent.RemoveExtra("ProductToEdit");

@@ -17,6 +17,8 @@ namespace OnlineFridge.Online
     [Activity(Label = "Register", Theme = "@style/CustomTheme", NoHistory = true)]
     public class Register : Activity
     {
+        private bool flag;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,7 +28,7 @@ namespace OnlineFridge.Online
             EditText email = FindViewById<EditText>(Resource.Id.email);
             EditText pass = FindViewById<EditText>(Resource.Id.pass);
             TextView error = FindViewById<TextView>(Resource.Id.error);
-            
+
             //INICJOWANIE PRZYCISKÓW
             Button buttonRegister = FindViewById<Button>(Resource.Id.buttonRegister);
 
@@ -35,53 +37,65 @@ namespace OnlineFridge.Online
 
             buttonRegister.Click += async (sender, e) =>
             {
+                flag = false;
                 var passwordToRegister = pass.Text.ToString();
                 var emailToRegister = email.Text.ToString();
-                if (IsValidLogin(emailToRegister))
+
+
+
+                if (!String.IsNullOrWhiteSpace(passwordToRegister) || String.IsNullOrWhiteSpace(emailToRegister))
                 {
-                    // WYWOŁANIE METODY GetUser
-                    // POBRANIE UŻYTKOWNIKA O TAKIM SAMYM EMAILU JAK WPISANY
-                    Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
-
-                    var userToCheckIfExist = await GetUser(emailToRegister);
-
-                    if (userToCheckIfExist == null) // SPRAWDZENIE CZY TAKI UŻYTKOWNIK ISTNIEJE
+                    if (IsValidLogin(emailToRegister))
                     {
-                        if (correctPass.IsMatch(passwordToRegister))
+                        // WYWOŁANIE METODY GetUser
+                        // POBRANIE UŻYTKOWNIKA O TAKIM SAMYM EMAILU JAK WPISANY
+                        Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
+
+                        var userToCheckIfExist = await GetUser(emailToRegister);
+
+                        if (!flag)
                         {
-                            // REJESTROWANIE
-                            //HASH I SALT
-                            //var salt;
-                            //var hash;
-                            var u = new User();
-                            u.email = emailToRegister;
-                            u.password = passwordToRegister;
-                            //u.passwordHash = hash;
-                            //u.salt =salt; 
-                            u.username = emailToRegister;
+                            if (userToCheckIfExist == null) // SPRAWDZENIE CZY TAKI UŻYTKOWNIK ISTNIEJE
+                            {
+                                if (correctPass.IsMatch(passwordToRegister))
+                                {
+                                    var hashsalt = new HashAndSalt(passwordToRegister);
 
-                            PostUser(u); // DODANIE UŻYTKOWNIKA
+                                    var u = new User();
+                                    u.email = emailToRegister;
+                                    u.password = passwordToRegister;
+                                    u.passwordHash = hashsalt.Hash;
+                                    u.salt = hashsalt.Salt;
+                                    u.username = emailToRegister;
 
-                            Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
+                                    PostUser(u); // DODANIE UŻYTKOWNIKA
+
+                                    Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
+                                }
+                                else
+                                {
+                                    error.Text =
+                                        "Hasło musi mieć długość co najmniej 8 znaków oraz musi zawierać: jedną małą litere, jedną dużą litere, jedną cyfre oraz jeden symbol!";
+                                }
+                            }
+                            else
+                            {
+                                Toast.MakeText(this, "Taki użytkownik już istnieje!", ToastLength.Short).Show();
+                            }
                         }
                         else
                         {
-                            error.Text =
-                                "Hasło musi mieć długość co najmniej 8 znaków oraz musi zawierać: jedną małą litere, jedną dużą litere, jedną cyfre oraz jeden symbol!";
+                            error.Text = "Nieprawidłowy format email!";
                         }
                     }
                     else
                     {
-                        Toast.MakeText(this, "Taki użytkownik już istnieje!", ToastLength.Short).Show();
+                        Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
                     }
-                }
-                else
-                {
-                    error.Text = "Nieprawidłowy format email!";
                 }
             };
         }
-        
+
         // METODA POBIERAJACA UZYTKOWNIKA PO POLU EMAIL
         public async Task<User> GetUser(string email)
         {
@@ -139,7 +153,8 @@ namespace OnlineFridge.Online
             }
         }
         public override void OnBackPressed()
-        {  
+        {
+            flag = true;
             var activity = new Intent(this, typeof(OnlineMode));
             activity.SetFlags(ActivityFlags.NewTask);
             activity.SetFlags(ActivityFlags.ClearTask);

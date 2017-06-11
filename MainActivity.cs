@@ -38,8 +38,26 @@ namespace OnlineFridge
 
         public override void OnBackPressed()
         {
-            //base.OnBackPressed();
-            // WYCHODZENIE Z APLIKACJI
+            ExitConfirmation();
+            
+        }
+
+        void ExitConfirmation()
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            alert.SetTitle("Potwierdź wyjście");
+            alert.SetMessage("Czy na pewno chcesz wyjść z aplikacji?");
+
+            alert.SetPositiveButton("Wyjdź", (senderAlert, args) =>
+            {
+                    ExitActivity.exitApplication(this);
+            });
+
+            alert.SetNegativeButton("Anuluj", (senderAlert, args) => { });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
         }
     }
 }

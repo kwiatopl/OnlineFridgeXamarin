@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace OnlineFridge
 {
-    [Activity(Label = "Splash Screen App", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true, Icon = "@drawable/Icon")]
+    [Activity(Label = "Internetowa lodówka", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true, Icon = "@drawable/Icon")]
     public class SplashScreen : Activity
     {
         protected override void OnCreate(Bundle bundle)

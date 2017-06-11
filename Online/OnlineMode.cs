@@ -57,7 +57,7 @@ namespace OnlineFridge.Online
                         {
                             if (userToLog != null)
                             {
-                                if (userToLog.email == login && userToLog.password == password)
+                                if (userToLog.email == login && HashAndSalt.Verify(userToLog.salt, userToLog.passwordHash, password))
                                 {
                                     var activity = new Intent(this, typeof(AfterLogin));
 

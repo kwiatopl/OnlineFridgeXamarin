@@ -1,3 +1,7 @@
+OnlineFridge.ExitActivity, test;md52b697feb66b01b6b2a3b04867fd571d3.ExitActivity
+OnlineFridge.ExitActivity, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52b697feb66b01b6b2a3b04867fd571d3.ExitActivity
+OnlineFridge.ExitActivity;md52b697feb66b01b6b2a3b04867fd571d3.ExitActivity
+onlinefridge.ExitActivity;md52b697feb66b01b6b2a3b04867fd571d3.ExitActivity
 OnlineFridge.ListViewAdapterOnline, test;md52b697feb66b01b6b2a3b04867fd571d3.ListViewAdapterOnline
 OnlineFridge.ListViewAdapterOnline, test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52b697feb66b01b6b2a3b04867fd571d3.ListViewAdapterOnline
 OnlineFridge.ListViewAdapterOnline;md52b697feb66b01b6b2a3b04867fd571d3.ListViewAdapterOnline

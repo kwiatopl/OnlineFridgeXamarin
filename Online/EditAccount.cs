@@ -13,7 +13,7 @@ namespace OnlineFridge.Online
     [Activity(Label = "Edycja konta",Theme="@style/CustomTheme")]
     public class EditAccount : Activity
     {
-        private bool flag;
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -21,7 +21,7 @@ namespace OnlineFridge.Online
 
             SetContentView(Resource.Layout.EditAccount);
 
-            flag = false;
+          
             var json = Intent.GetStringExtra("userKonto");
             var actualUser = JsonConvert.DeserializeObject<User>(json);
 
