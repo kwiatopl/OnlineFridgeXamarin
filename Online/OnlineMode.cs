@@ -10,6 +10,7 @@ using Android.Widget;
 using Newtonsoft.Json;
 using OnlineFridge.DataAccess.Model;
 using System.Net.Mail;
+using Android.Accounts;
 
 namespace OnlineFridge.Online
 {
@@ -36,7 +37,6 @@ namespace OnlineFridge.Online
             Button btnRegister = FindViewById<Button>(Resource.Id.buttonRegister);
 
             //KLIKNIĘCIE LOGIN
-
 
             btnLogin.Click += async (sender, e) =>
             {
@@ -118,10 +118,11 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var result = await client.GetAsync(String.Format("/api/User?email={0}", email));
+
                 if (result.IsSuccessStatusCode)
                 {
                     return JsonConvert.DeserializeObject<User>(await result.Content

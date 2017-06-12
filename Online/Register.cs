@@ -41,8 +41,6 @@ namespace OnlineFridge.Online
                 var passwordToRegister = pass.Text.ToString();
                 var emailToRegister = email.Text.ToString();
 
-
-
                 if (!String.IsNullOrWhiteSpace(passwordToRegister) || String.IsNullOrWhiteSpace(emailToRegister))
                 {
                     if (IsValidLogin(emailToRegister))
@@ -53,8 +51,7 @@ namespace OnlineFridge.Online
 
                         var userToCheckIfExist = await GetUser(emailToRegister);
 
-                        if (!flag)
-                        {
+                        
                             if (userToCheckIfExist == null) // SPRAWDZENIE CZY TAKI UŻYTKOWNIK ISTNIEJE
                             {
                                 if (correctPass.IsMatch(passwordToRegister))
@@ -92,7 +89,7 @@ namespace OnlineFridge.Online
                     {
                         Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
                     }
-                }
+                
             };
         }
 
@@ -101,7 +98,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -144,7 +141,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
 
                 var json = JsonConvert.SerializeObject(user);       // SERIALIZACJA OBIEKTU NA FORMAT JSON
 

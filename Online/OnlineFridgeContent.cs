@@ -147,7 +147,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -169,7 +169,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
 
                 var response = await client.DeleteAsync(String.Format("/api/Product/{0}", id));
                 

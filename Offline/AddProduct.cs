@@ -3,6 +3,7 @@ using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using OnlineFridge.DataAccess;
 using OnlineFridge.DataAccess.Model;
@@ -82,39 +83,55 @@ namespace OnlineFridge.Offline
             };
 
             btnDodaj.Click += (x, z) =>
-            { 
-                    if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) && int.Parse(txtIlosc.Text.ToString()) != 0 )
+            {
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) &&
+                        int.Parse(txtIlosc.Text.ToString()) != 0)
                     {
-                    Product produkt = new Product();
+                        Product produkt = new Product();
 
-                    produkt.name = txtNazwa.Text.ToString().ToUpper();
-                    produkt.count = int.Parse(txtIlosc.Text.ToString());
-                    produkt.unit = type;
-                    produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        produkt.name = txtNazwa.Text.ToString().ToUpper();
+                        produkt.count = int.Parse(txtIlosc.Text.ToString());
+                        produkt.unit = type;
+                        produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
 
-                    using (var db = new FridgeDb())
-                    {
-                        db.Insert(produkt);
-                    }
+                        using (var db = new FridgeDb())
+                        {
+                            db.Insert(produkt);
+                        }
 
-                    // TEST 
+                        // TEST 
 
-                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
+                        Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
                         var activity = new Intent(this, typeof(AddProduct));
                         StartActivity(activity);
 
                     }
                     else
                     {
-                    Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
-                    }    
+                        Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
+                    }
+                }
+                catch (System.OverflowException ex)
+                {
+                    AlertDialog.Builder messageBox = new AlertDialog.Builder(this);
+                    messageBox.SetTitle("Dodawanie produktu");
+                    messageBox.SetMessage(ex.Message);
+                    messageBox.SetCancelable(false);
+                    messageBox.SetNeutralButton("OK", (senderAlert, args) =>
+                    {
+                        
+                    });
+                    Dialog dialog = messageBox.Create();
+                    dialog.Show();
+                }
 
-               
+
             };
 
         }
 
-        
 
         void DateSelect_OnClick(object sender, EventArgs eventArgs)
         {

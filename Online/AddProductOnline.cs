@@ -82,27 +82,45 @@ namespace OnlineFridge.Online
 
             btnDodaj.Click += (x, z) =>
             {
-                if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) && int.Parse(txtIlosc.Text.ToString()) != 0)
+                try
                 {
-                    ProductOnline produkt = new ProductOnline();
+                    if (!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) &&
+                        int.Parse(txtIlosc.Text.ToString()) != 0)
+                    {
 
-                    produkt.productId = 0;
-                    produkt.name = txtNazwa.Text.ToString().ToUpper();
-                    produkt.count = int.Parse(txtIlosc.Text.ToString());
-                    produkt.unit = type;
-                    produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
-                    produkt.userId = actualUser.userId;
-                    produkt.inShoppingList = false;
-                    
-                    PostProduct(produkt);
+                        ProductOnline produkt = new ProductOnline();
 
-                    Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
-                    var activity = new Intent(this, typeof(AddProductOnline));
-                    StartActivity(activity);
+                        produkt.productId = 0;
+                        produkt.name = txtNazwa.Text.ToString().ToUpper();
+                        produkt.count = int.Parse(txtIlosc.Text.ToString());
+                        produkt.unit = type;
+                        produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        produkt.userId = actualUser.userId;
+                        produkt.inShoppingList = false;
+
+                        PostProduct(produkt);
+
+                        Toast.MakeText(this, "Dodano", ToastLength.Short).Show();
+                        var activity = new Intent(this, typeof(AddProductOnline));
+                        StartActivity(activity);
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
+                    }
                 }
-                else
+                catch (System.OverflowException ex)
                 {
-                    Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
+                    AlertDialog.Builder messageBox = new AlertDialog.Builder(this);
+                    messageBox.SetTitle("Dodawanie produktu");
+                    messageBox.SetMessage(ex.Message);
+                    messageBox.SetCancelable(false);
+                    messageBox.SetNeutralButton("OK", (senderAlert, args) =>
+                    {
+
+                    });
+                    Dialog dialog = messageBox.Create();
+                    dialog.Show();
                 }
             };
 
@@ -132,7 +150,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.1.17:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
 
                 var json = JsonConvert.SerializeObject(product);
 

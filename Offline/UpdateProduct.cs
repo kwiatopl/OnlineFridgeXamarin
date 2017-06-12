@@ -8,6 +8,7 @@ using Android.Widget;
 using Newtonsoft.Json;
 using OnlineFridge.DataAccess;
 using OnlineFridge.DataAccess.Model;
+using OnlineFridge.Online;
 using OnlineFridge.SelectDate;
 
 namespace OnlineFridge.Offline
@@ -127,27 +128,44 @@ namespace OnlineFridge.Offline
 
                 btnDodaj.Click += (x, z) =>
                 {
-                    if (//!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) &&
-                        int.Parse(txtIlosc.Text.ToString()) != 0
+                    try
+                    {
+
+                        if ( //!string.IsNullOrWhiteSpace(txtNazwa.Text.ToString()) &&
+                            int.Parse(txtIlosc.Text.ToString()) != 0
                         )
-                    {
-                        //productEdit.name = txtNazwa.Text.ToString().ToUpper();
-                        productEdit.count = int.Parse(txtIlosc.Text.ToString());
-                        productEdit.unit = type;
-                        productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
-
-                        using (var db = new FridgeDb())
                         {
-                            db.Update(productEdit);
-                        }
+                            //productEdit.name = txtNazwa.Text.ToString().ToUpper();
+                            productEdit.count = int.Parse(txtIlosc.Text.ToString());
+                            productEdit.unit = type;
+                            productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
 
-                        Toast.MakeText(this, "Edytowano", ToastLength.Short).Show();
-                        var activity = new Intent(this, typeof(FridgeContent));
-                        StartActivity(activity);
+                            using (var db = new FridgeDb())
+                            {
+                                db.Update(productEdit);
+                            }
+
+                            Toast.MakeText(this, "Edytowano", ToastLength.Short).Show();
+                            var activity = new Intent(this, typeof(FridgeContent));
+                            StartActivity(activity);
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
+                        }
                     }
-                    else
+                    catch (OverflowException ex)
                     {
-                        Toast.MakeText(this, "Wypełnij pola", ToastLength.Short).Show();
+                        AlertDialog.Builder messageBox = new AlertDialog.Builder(this);
+                        messageBox.SetTitle("Dodawanie produktu");
+                        messageBox.SetMessage(ex.Message);
+                        messageBox.SetCancelable(false);
+                        messageBox.SetNeutralButton("OK", (senderAlert, args) =>
+                        {
+
+                        });
+                        Dialog dialog = messageBox.Create();
+                        dialog.Show();
                     }
                 };
             }
