@@ -30,8 +30,9 @@ namespace OnlineFridge.Online
 
             
             var MyJsonString = Intent.GetStringExtra("ProductToEdit");
-
+            var actualUser = Intent.GetStringExtra("User");
             Intent.RemoveExtra("ProductToEdit");
+            Intent.RemoveExtra("User");
 
             if (!string.IsNullOrWhiteSpace(MyJsonString))
             {
@@ -51,8 +52,16 @@ namespace OnlineFridge.Online
 
                 string actualCount = productEdit.count + " " + productEdit.unit;
 
-                string actualExpDate = productEdit.expDate;
+                string actualExpDate;
 
+                if (productEdit.expDate != "0001-01-01" || !String.IsNullOrWhiteSpace(productEdit.expDate))
+                {
+                    actualExpDate = productEdit.expDate;
+                }
+                else
+                {
+                   actualExpDate = null;
+                }
                 string actualName = productEdit.name;
 
                 Quantity actualType = productEdit.unit;
@@ -126,7 +135,7 @@ namespace OnlineFridge.Online
                     type = Quantity.sztuk;
                 };
 
-                btnDodaj.Click += (x, z) =>
+                btnDodaj.Click += async(x, z) =>
                 {
                     try
                     {
@@ -135,18 +144,21 @@ namespace OnlineFridge.Online
                         {
                             productEdit.count = int.Parse(txtIlosc.Text.ToString());
                             productEdit.unit = type;
-                            productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
+                            if (_dateDisplay.Text.ToString().ToUpper() != "0001-01-01" || !String.IsNullOrWhiteSpace(_dateDisplay.Text.ToString().ToUpper()))
+                            {
+                                productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
+                            }
+                            else
+                            {
+                                productEdit.expDate = null;
+                            }
 
-                            Update(productEdit);
+                            await UpdateProduct(productEdit);
                             Toast.MakeText(this, "Edytowano!", ToastLength.Short).Show();
 
                             var activity = new Intent(this, typeof(OnlineFridgeContent));
-
-                            activity.SetFlags(ActivityFlags.NewTask);
-                            activity.SetFlags(ActivityFlags.ClearTask);
-
+                            activity.PutExtra("userZawartosc",actualUser);
                             StartActivity(activity);
-
 
                         }
                         else
@@ -196,7 +208,7 @@ namespace OnlineFridge.Online
            using (var client = new HttpClient())
            {
                
-               client.BaseAddress = new Uri("http://192.168.0.103:61913/");
+               client.BaseAddress = new Uri("http://192.168.0.104:61913/");
 
                var json = JsonConvert.SerializeObject(product);
 

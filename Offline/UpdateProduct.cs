@@ -138,7 +138,14 @@ namespace OnlineFridge.Offline
                             //productEdit.name = txtNazwa.Text.ToString().ToUpper();
                             productEdit.count = int.Parse(txtIlosc.Text.ToString());
                             productEdit.unit = type;
-                            productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
+                            if (_dateDisplay.Text.ToString().ToUpper() != "0001-01-01" || !String.IsNullOrWhiteSpace(_dateDisplay.Text.ToString().ToUpper()))
+                            {
+                               productEdit.expDate = _dateDisplay.Text.ToString().ToUpper();
+                            }
+                            else
+                            {
+                                productEdit.expDate = null;
+                            }
 
                             using (var db = new FridgeDb())
                             {
@@ -175,7 +182,7 @@ namespace OnlineFridge.Offline
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {
-                _dateDisplay.Text = time.ToShortDateString();
+                _dateDisplay.Text = time.ToString("yyyy-MM-dd");
             });
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }

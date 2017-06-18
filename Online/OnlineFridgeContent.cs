@@ -20,6 +20,7 @@ namespace OnlineFridge.Online
         private ListView _listView;
         List<ProductOnline> _productsList = new List<ProductOnline>();
 
+        User actualUser = new User();
         /*
         protected override async void OnResume()
         {
@@ -54,11 +55,18 @@ namespace OnlineFridge.Online
             _listView = FindViewById<ListView>(Resource.Id.productListView);
 
             var json = Intent.GetStringExtra("userZawartosc");
-            var actualUser = JsonConvert.DeserializeObject<User>(json);
+            actualUser = JsonConvert.DeserializeObject<User>(json);
 
             Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
 
             _productsList = await GetProduct((long)actualUser.userId);
+            foreach (ProductOnline p in _productsList)
+            {
+                if (p.expDate == "0001-01-01")
+                {
+                    p.expDate = null;
+                }
+            }
 
             var adapter = new ListViewAdapterOnline(this, _productsList);
             _listView.Adapter = adapter;
@@ -84,15 +92,17 @@ namespace OnlineFridge.Online
             alert.SetTitle("Potwierdź usunięcie");
             alert.SetMessage("Czy na pewno chcesz usunąć produkt: " + product.name + " z listy?");
 
-            alert.SetPositiveButton("Usuń", (senderAlert, args) =>
+            alert.SetPositiveButton("Usuń", async (senderAlert, args) =>
             {
                 var itemToRemove = _productsList.Single(r => r.productId == product.productId);
                 _productsList.Remove(itemToRemove);
 
-                DeleteAsync(itemToRemove.productId);
+                await DeleteProduct(product.productId);
                 Toast.MakeText(this, "Usunięto!", ToastLength.Short).Show();
 
                 var activity = new Intent(this, typeof(OnlineFridgeContent));
+                var jsonUser = JsonConvert.SerializeObject(actualUser);
+                activity.PutExtra("userZawartosc", jsonUser);
                 StartActivity(activity);
             });
 
@@ -122,11 +132,12 @@ namespace OnlineFridge.Online
                 var itemToUpdate = _productsList.Single(r => r.productId == product.productId);
 
                 var SerializedObject = JsonConvert.SerializeObject(itemToUpdate);
+                var SerializedUser = JsonConvert.SerializeObject(actualUser);
 
                 var activity = new Intent(this, typeof(UpdateProductOnline));
 
                 activity.PutExtra("ProductToEdit", SerializedObject);
-
+                activity.PutExtra("User", SerializedUser);
                 StartActivity(activity);
                 
             });
@@ -147,7 +158,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -169,7 +180,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
 
                 var response = await client.DeleteAsync(String.Format("/api/Product/{0}", id));
                 

@@ -94,7 +94,15 @@ namespace OnlineFridge.Online
                         produkt.name = txtNazwa.Text.ToString().ToUpper();
                         produkt.count = int.Parse(txtIlosc.Text.ToString());
                         produkt.unit = type;
-                        produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        if (_dateDisplay.Text.ToString().ToUpper() != "0001-01-01" || !String.IsNullOrWhiteSpace(_dateDisplay.Text.ToString().ToUpper()))
+                        {
+                            produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        }
+                        else
+                        {
+                            produkt.expDate = null;
+                        }
+
                         produkt.userId = actualUser.userId;
                         produkt.inShoppingList = false;
 
@@ -150,7 +158,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.103:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
 
                 var json = JsonConvert.SerializeObject(product);
 

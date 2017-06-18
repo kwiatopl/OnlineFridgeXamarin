@@ -94,7 +94,15 @@ namespace OnlineFridge.Offline
                         produkt.name = txtNazwa.Text.ToString().ToUpper();
                         produkt.count = int.Parse(txtIlosc.Text.ToString());
                         produkt.unit = type;
-                        produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        if (_dateDisplay.Text.ToString().ToUpper() != "0001-01-01" || !String.IsNullOrWhiteSpace(_dateDisplay.Text.ToString().ToUpper()))
+                        {
+                            produkt.expDate = _dateDisplay.Text.ToString().ToUpper();
+                        }
+                        else
+                        {
+                            produkt.expDate = null;
+                        }
+                        
 
                         using (var db = new FridgeDb())
                         {
