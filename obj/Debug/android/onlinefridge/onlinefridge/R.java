@@ -47,7 +47,7 @@ public final class R {
         public static final int fridgeContent=0x7f060012;
         public static final int gramy=0x7f060008;
         public static final int kilogramy=0x7f060006;
-        public static final int linearLayout1=0x7f060035;
+        public static final int linearLayout1=0x7f060036;
         public static final int linearLayout2=0x7f060020;
         public static final int litry=0x7f060009;
         public static final int logout=0x7f060015;
@@ -55,9 +55,10 @@ public final class R {
         public static final int newPass=0x7f060019;
         public static final int pass=0x7f060034;
         public static final int passChange=0x7f06001e;
+        public static final int passConf=0x7f060035;
         public static final int password=0x7f06002d;
         public static final int productListView=0x7f060024;
-        public static final int produkt=0x7f060036;
+        public static final int produkt=0x7f060037;
         public static final int radioGroup1=0x7f060005;
         public static final int space1=0x7f060010;
         public static final int space2=0x7f06000e;
@@ -72,12 +73,12 @@ public final class R {
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f060002;
         public static final int textView3=0x7f060004;
-        public static final int textView4=0x7f060038;
-        public static final int textView5=0x7f060039;
+        public static final int textView4=0x7f060039;
+        public static final int textView5=0x7f06003a;
         public static final int txtCount=0x7f060026;
         public static final int txtExpDate=0x7f060027;
         public static final int txtName=0x7f060025;
-        public static final int txtProduct=0x7f060037;
+        public static final int txtProduct=0x7f060038;
         public static final int txtViewCount=0x7f060022;
         public static final int txtViewExpDate=0x7f060023;
         public static final int txtViewName=0x7f060021;

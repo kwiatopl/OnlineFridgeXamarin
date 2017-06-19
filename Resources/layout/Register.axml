@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:textColor="@color/grey"
         android:layout_height="wrap_content"
-        android:id="@+id/pass" />
+        android:id="@+id/passConf" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="34.5dp"

@@ -118,7 +118,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.101:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var result = await client.GetAsync(String.Format("/api/User?email={0}", email));

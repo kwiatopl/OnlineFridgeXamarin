@@ -57,6 +57,7 @@ namespace OnlineFridge.Online
                             if (hashsalt.Hash != actualUser.passwordHash)
                             {
                                 //WARUNEK SPEŁNIONY
+                                actualUser.password = newPass.Text.ToString();
                                 actualUser.passwordHash = hashsalt.Hash;
                                 actualUser.salt = hashsalt.Salt;
 
@@ -68,6 +69,7 @@ namespace OnlineFridge.Online
                                     Toast.MakeText(this, "Zmieniono hasło!", ToastLength.Short).Show();
 
                                     var activity = new Intent(this, typeof(ChangePassword));
+									activity.PutExtra("userChangePass",json);
                                     StartActivity(activity);
                                 
                             }
@@ -104,7 +106,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.101:61913/");
 
                 var json = JsonConvert.SerializeObject(user);
 

@@ -27,6 +27,7 @@ namespace OnlineFridge.Online
             //INICJOWANIE WIDOKOW
             EditText email = FindViewById<EditText>(Resource.Id.email);
             EditText pass = FindViewById<EditText>(Resource.Id.pass);
+			EditText passConf = FindViewById<EditText>(Resource.Id.passConf);
             TextView error = FindViewById<TextView>(Resource.Id.error);
 
             //INICJOWANIE PRZYCISKÓW
@@ -40,19 +41,24 @@ namespace OnlineFridge.Online
                 flag = false;
                 var passwordToRegister = pass.Text.ToString();
                 var emailToRegister = email.Text.ToString();
+                var passwordToRegisterConf = passConf.Text.ToString();
 
-                if (!String.IsNullOrWhiteSpace(passwordToRegister) || String.IsNullOrWhiteSpace(emailToRegister))
+                if (!String.IsNullOrWhiteSpace(email.Text.ToString()) ||
+                    !String.IsNullOrWhiteSpace(pass.Text.ToString()) ||
+                    !String.IsNullOrWhiteSpace(passConf.Text.ToString()))
                 {
-                    if (IsValidLogin(emailToRegister))
+                    if (passwordToRegister == passwordToRegisterConf)
                     {
-                        // WYWOŁANIE METODY GetUser
-                        // POBRANIE UŻYTKOWNIKA O TAKIM SAMYM EMAILU JAK WPISANY
-                        Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
 
-                        var userToCheckIfExist = await GetUser(emailToRegister);
+                        if (IsValidLogin(emailToRegister))
+                        {
+                            // WYWOŁANIE METODY GetUser
+                            // POBRANIE UŻYTKOWNIKA O TAKIM SAMYM EMAILU JAK WPISANY
+                            Toast.MakeText(this, "Ładowanie...", ToastLength.Short).Show();
 
-                        
-                            if (userToCheckIfExist == null) // SPRAWDZENIE CZY TAKI UŻYTKOWNIK ISTNIEJE
+                            var userToCheckIfExist = await GetUser(emailToRegister);
+
+                            if (userToCheckIfExist == null || userToCheckIfExist.email != emailToRegister) // SPRAWDZENIE CZY TAKI UŻYTKOWNIK ISTNIEJE
                             {
                                 if (correctPass.IsMatch(passwordToRegister))
                                 {
@@ -65,7 +71,7 @@ namespace OnlineFridge.Online
                                     u.salt = hashsalt.Salt;
                                     u.username = emailToRegister;
 
-                                    PostUser(u); // DODANIE UŻYTKOWNIKA
+                                    await AddUser(u); // DODANIE UŻYTKOWNIKA
 
                                     Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
                                 }
@@ -87,9 +93,13 @@ namespace OnlineFridge.Online
                     }
                     else
                     {
-                        Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
+                        error.Text = "Podane hasła się od siebie różnią!";
                     }
-                
+                }
+                else
+                {
+                    Toast.MakeText(this, "Uzupełnij pola!", ToastLength.Short).Show();
+                }
             };
         }
 
@@ -98,7 +108,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.101:61913/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -141,7 +151,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.101:61913/");
 
                 var json = JsonConvert.SerializeObject(user);       // SERIALIZACJA OBIEKTU NA FORMAT JSON
 

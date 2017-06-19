@@ -158,7 +158,7 @@ namespace OnlineFridge.Online
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://192.168.0.104:61913/");
+                client.BaseAddress = new Uri("http://192.168.0.101:61913/");
 
                 var json = JsonConvert.SerializeObject(product);
 

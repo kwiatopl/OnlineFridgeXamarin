@@ -166,8 +166,8 @@ namespace OnlineFridge
 			// aapt resource value: 0x7f060006
 			public const int kilogramy = 2131099654;
 			
-			// aapt resource value: 0x7f060035
-			public const int linearLayout1 = 2131099701;
+			// aapt resource value: 0x7f060036
+			public const int linearLayout1 = 2131099702;
 			
 			// aapt resource value: 0x7f060020
 			public const int linearLayout2 = 2131099680;
@@ -190,14 +190,17 @@ namespace OnlineFridge
 			// aapt resource value: 0x7f06001e
 			public const int passChange = 2131099678;
 			
+			// aapt resource value: 0x7f060035
+			public const int passConf = 2131099701;
+			
 			// aapt resource value: 0x7f06002d
 			public const int password = 2131099693;
 			
 			// aapt resource value: 0x7f060024
 			public const int productListView = 2131099684;
 			
-			// aapt resource value: 0x7f060036
-			public const int produkt = 2131099702;
+			// aapt resource value: 0x7f060037
+			public const int produkt = 2131099703;
 			
 			// aapt resource value: 0x7f060005
 			public const int radioGroup1 = 2131099653;
@@ -241,11 +244,11 @@ namespace OnlineFridge
 			// aapt resource value: 0x7f060004
 			public const int textView3 = 2131099652;
 			
-			// aapt resource value: 0x7f060038
-			public const int textView4 = 2131099704;
-			
 			// aapt resource value: 0x7f060039
-			public const int textView5 = 2131099705;
+			public const int textView4 = 2131099705;
+			
+			// aapt resource value: 0x7f06003a
+			public const int textView5 = 2131099706;
 			
 			// aapt resource value: 0x7f060026
 			public const int txtCount = 2131099686;
@@ -256,8 +259,8 @@ namespace OnlineFridge
 			// aapt resource value: 0x7f060025
 			public const int txtName = 2131099685;
 			
-			// aapt resource value: 0x7f060037
-			public const int txtProduct = 2131099703;
+			// aapt resource value: 0x7f060038
+			public const int txtProduct = 2131099704;
 			
 			// aapt resource value: 0x7f060022
 			public const int txtViewCount = 2131099682;
